@@ -2,11 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace WinFormsApp1.Domain
+namespace WinFormsApp1.Model
 {
     class Level
     {
-        //public Timer timer;
         public Size size { get; set; }
 
         public List<Item> Items { get; private set; }

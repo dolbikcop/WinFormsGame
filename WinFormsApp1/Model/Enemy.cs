@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace WinFormsApp1.Domain
+namespace WinFormsApp1.Model
 {
     class Enemy
     {
