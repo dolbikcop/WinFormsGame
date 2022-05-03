@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp1.Model
 {
-    
-    internal class Game
+    public class Game
     {
         public Player player;
 
         public List<Level> levels;
 
-        public Level internalLevel;
+        public readonly Level internalLevel;
+
+        public Game(Player player)
+        {
+            this.player = player;
+            levels = new List<Level>
+            {
+                new Level()
+            };
+            internalLevel = levels[0];
+        }
+
+        public Game()
+        {
+        }
     }
 }

@@ -2,17 +2,20 @@
 
 namespace WinFormsApp1.Model
 {
-    class Player
+    public class Player
     {
-        internal Point Position { get; private set; }
+        public Point Position { get; private set; }
         public readonly int Speed;
-        internal int Health { get; private set; }
+        public int Health { get; private set; }
+
+        public int X => Position.X;
+        public int Y => Position.Y;
         // energy
         public int Score { get; set; }
 
-        public Player(int x, int y, int speed, int health)
+        public Player(Point start, int speed, int health)
         {
-            Position = new Point(x, y);
+            Position = start;
             Speed = speed;
             Health = health;
             Score = 0;

@@ -2,7 +2,7 @@
 
 namespace WinFormsApp1.Model
 {
-    class Item
+    public class Item
     {
         public readonly PointF Position;
         public readonly int Bonus;

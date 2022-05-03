@@ -2,7 +2,7 @@
 
 namespace WinFormsApp1.Model
 {
-    class Enemy
+    public class Enemy
     {
         public PointF Position { get; private set; }
 

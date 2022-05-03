@@ -14,44 +14,78 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-        private Player pl = new Player(100, 100, 5, 10);
+        private Game game;
+        private Player pl;
+        private SpawnManager _spawnManager;
+        private Graphics g;
         public Form1()
         {
-            this.KeyDown += OKP;
-            this.Load += (sender, args) =>
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            game = new()
+            {
+                levels = new List<Level>()
+                {
+                    new(new Size(1000, 1000), new Point(0,0))
+                }
+            };
+            game.player = new Player(game.levels[0].Start, 20, 12);
+            pl = game.player;
+            KeyDown += OKP;
+            Load += (sender, args) =>
                 GoFullscreen(true);
             DoubleBuffered = true;
             var timer = new Timer();
             timer.Interval = 10;
             timer.Tick += (sender, args) => Invalidate();
+            timer.Tick += (sender, args) => IntersectionObject(); 
             timer.Start();
+            _spawnManager = new SpawnManager(this);
+        }
+
+        private void IntersectionObject()
+        {
+            foreach (var i in Controls)
+            {
+                foreach (var j in Controls)
+                {
+                    if (i is Rectangle && j is Rectangle && i != j) ;
+                    //if ()
+                }
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            var g = e.Graphics;
+            g = e.Graphics;
             
-            g.FillEllipse(Brushes.Coral, new Rectangle(pl.Position, new Size(50, 50)));
+            g.FillEllipse(Brushes.Coral, new Rectangle( ClientSize.Width/2 + pl.X, ClientSize.Height/2 + pl.Y, 50, 50));
         }
 
         private void OKP(object sender, KeyEventArgs e)
         {
             switch (e.KeyData)
             {
-                case Keys.Right:
+                case Keys.D:
                     pl.Move(pl.Speed, 0);
                     break;
-                case Keys.Left:
+                case Keys.A:
                     pl.Move(-pl.Speed, 0);
                     break;
-                case Keys.Up:
+                case Keys.W:
                     pl.Move(0, -pl.Speed);
                     break;
-                case Keys.Down:
+                case Keys.S:
                     pl.Move(0, pl.Speed);
                     break;
                 case Keys.Escape:
                     GoFullscreen(false);
+                    break;
+                case Keys.Enter:
+                    _spawnManager.StartSpawn();
                     break;
             }
         }
@@ -59,14 +93,14 @@ namespace WinFormsApp1
         {
             if (fullscreen)
             {
-                this.WindowState = FormWindowState.Normal;
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                this.Bounds = Screen.PrimaryScreen.Bounds;
+                WindowState = FormWindowState.Normal;
+                FormBorderStyle = FormBorderStyle.None;
+                Bounds = Screen.PrimaryScreen.Bounds;
             }
             else
             {
-                this.WindowState = FormWindowState.Maximized;
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                WindowState = FormWindowState.Maximized;
+                FormBorderStyle = FormBorderStyle.Sizable;
             }
         }
     }
