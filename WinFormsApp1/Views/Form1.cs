@@ -18,6 +18,9 @@ namespace WinFormsApp1
         private Player pl;
         private SpawnManager _spawnManager;
         private Graphics g;
+
+        private int horizontal = 0;
+        private int vertival = 0;
         public Form1()
         {
             Initialize();
@@ -34,16 +37,21 @@ namespace WinFormsApp1
             };
             game.player = new Player(game.levels[0].Start, 20, 12);
             pl = game.player;
-            KeyDown += OKP;
             Load += (sender, args) =>
                 GoFullscreen(true);
             DoubleBuffered = true;
             var timer = new Timer();
             timer.Interval = 10;
-            timer.Tick += (sender, args) => Invalidate();
-            timer.Tick += (sender, args) => IntersectionObject(); 
+            timer.Tick += (_, _) => UpdateForm();
+            timer.Tick += (_, _) => IntersectionObject(); 
             timer.Start();
             _spawnManager = new SpawnManager(this);
+        }
+
+        private void UpdateForm()
+        {
+            pl.Move(horizontal, vertival);
+            Invalidate();
         }
 
         private void IntersectionObject()
@@ -57,29 +65,32 @@ namespace WinFormsApp1
                 }
             }
         }
+        
+        
 
         protected override void OnPaint(PaintEventArgs e)
         {
             g = e.Graphics;
-            
-            g.FillEllipse(Brushes.Coral, new Rectangle( ClientSize.Width/2 + pl.X, ClientSize.Height/2 + pl.Y, 50, 50));
+            var playerView = new Rectangle(ClientSize.Width / 2 + pl.X,
+                ClientSize.Height / 2 + pl.Y, 50, 50);
+            g.FillEllipse(Brushes.Coral, playerView);
         }
 
-        private void OKP(object sender, KeyEventArgs e)
+        protected override void OnKeyDown(KeyEventArgs e)
         {
             switch (e.KeyData)
             {
                 case Keys.D:
-                    pl.Move(pl.Speed, 0);
+                    horizontal = 1;
                     break;
                 case Keys.A:
-                    pl.Move(-pl.Speed, 0);
+                    horizontal = -1;
                     break;
                 case Keys.W:
-                    pl.Move(0, -pl.Speed);
+                    vertival = -1;
                     break;
                 case Keys.S:
-                    pl.Move(0, pl.Speed);
+                    vertival = 1;
                     break;
                 case Keys.Escape:
                     GoFullscreen(false);
@@ -89,6 +100,15 @@ namespace WinFormsApp1
                     break;
             }
         }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.A || e.KeyData == Keys.D)
+                horizontal = 0;
+            if (e.KeyData == Keys.W || e.KeyData == Keys.S)
+                vertival = 0;
+        }
+
         private void GoFullscreen(bool fullscreen)
         {
             if (fullscreen)
@@ -102,6 +122,11 @@ namespace WinFormsApp1
                 WindowState = FormWindowState.Maximized;
                 FormBorderStyle = FormBorderStyle.Sizable;
             }
+        }
+
+        bool isCollisionWith(Rectangle r1, Rectangle r2)
+        {
+            return r1.IntersectsWith(r2);
         }
     }
 }
