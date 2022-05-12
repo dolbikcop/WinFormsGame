@@ -7,14 +7,14 @@ namespace WinFormsApp1
     public class SpawnManager
     {
         private Form1 _form1;
-        private Random r = new Random();
+        private Random r = new();
         private Timer timer;
-        public SpawnManager(Form1 form1)
+        public SpawnManager(Form1 form1, int interval)
         {
             _form1 = form1;
             timer = new Timer();
-            timer.Interval = 500;
-            timer.Tick += (sender, args) => AddEnemies();
+            timer.Interval = interval;
+            timer.Tick += (_, _) => AddEnemies();
         }
 
         public void StartSpawn() => timer.Start();
