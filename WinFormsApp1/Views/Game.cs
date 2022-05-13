@@ -22,7 +22,8 @@ namespace WinFormsApp1.Model
         
         PictureBox playerImage = new()
         {
-            ImageLocation = @"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\enemy.png"
+            ImageLocation = @"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\character.png", 
+            Height = 100, Width = 100
         };
 
         public Game(Player player)

@@ -1,5 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace MainTests
 {
     [TestClass]
@@ -9,5 +7,9 @@ namespace MainTests
         public void TestMethod1()
         {
         }
+    }
+
+    public class TestClassAttribute
+    {
     }
 }
