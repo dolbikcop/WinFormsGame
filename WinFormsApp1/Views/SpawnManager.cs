@@ -9,29 +9,31 @@ namespace WinFormsApp1
         private Form1 _form1;
         private Random r = new();
         private Timer timer;
-        public SpawnManager(Form1 form1, int interval)
+        public SpawnManager(Form1 form1, int interval, PictureBox p)
         {
             _form1 = form1;
             timer = new Timer();
             timer.Interval = interval;
-            timer.Tick += (_, _) => AddEnemies();
+            timer.Tick += (_, _) => AddEnemies(p);
         }
 
         public void StartSpawn() => timer.Start();
         public void StopSpawn() => timer.Stop();
         
 
-        public void AddEnemies()
+        public void AddEnemies(PictureBox s)
         {
-            PictureBox enemy = new PictureBox();
-            enemy.Tag = "zombie";
-            enemy.Image = Image.FromFile("E:\\StudioProject\\WinFormsApp1\\WinFormsApp1\\Resources\\enemy.png");
-            enemy.Left = r.Next(0, _form1.ClientSize.Width);
-            enemy.Top = r.Next(0, _form1.ClientSize.Height);
-            enemy.SizeMode=PictureBoxSizeMode.Normal;
-            // add enemy in levele
-            _form1.Controls.Add(enemy);
-            enemy.BringToFront();
+            PictureBox p = new()
+            {
+                Image = s.Image, 
+                Size = s.Size,
+                Tag = s.Tag
+            };
+            p.Left = r.Next(0, _form1.ClientSize.Width);
+            p.Top = r.Next(0, _form1.ClientSize.Height);
+            p.SizeMode=PictureBoxSizeMode.Normal;
+            _form1.Controls.Add(p);
+            p.BringToFront();
 
         }
     }

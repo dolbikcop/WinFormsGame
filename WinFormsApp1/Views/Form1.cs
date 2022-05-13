@@ -15,13 +15,13 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
         private Game g;
-        private SpawnManager _spawnManager;
         
         public int HInput { get; private set; }
         public int VInput { get; private set; }
         
         public Form1()
         {
+            ClientSize = new Size(1000, 1000);
             Initialize();
         }
 
@@ -34,7 +34,7 @@ namespace WinFormsApp1
             
             //timer.Tick += (_, _) => IntersectionObject(); 
             
-            _spawnManager = new SpawnManager(this, 100);
+            
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -57,7 +57,7 @@ namespace WinFormsApp1
                     GoFullscreen(false);
                     break;
                 case Keys.Enter:
-                    _spawnManager.StartSpawn();
+                    g.spawnHealth.StartSpawn();
                     break;
             }
         }
@@ -85,18 +85,5 @@ namespace WinFormsApp1
             }
         }
         
-        
-
-        private void IntersectionObject()
-        {
-            foreach (var i in Controls)
-            {
-                foreach (var j in Controls)
-                {
-                    if (i is Rectangle && j is Rectangle && i != j) ;
-                    //if ()
-                }
-            }
-        }
     }
 }

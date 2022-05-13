@@ -23,7 +23,7 @@ namespace WinFormsApp1.Model
 
         public void Move(int dx, int dy)
         {
-            Position = new Point(Position.X + dx, Position.Y + dy);
+            Position = new Point(Position.X + dx*Speed, Position.Y + dy*Speed);
         }
 
         public void TakeDamage(Enemy e)
@@ -34,6 +34,10 @@ namespace WinFormsApp1.Model
         public void TakeItem(Item i)
         {
             Score += i.Bonus;
+        }
+        public void TakeHealth(int i)
+        {
+            Health += i;
         }
     }
 }
