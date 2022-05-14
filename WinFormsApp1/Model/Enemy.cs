@@ -4,15 +4,21 @@ namespace WinFormsApp1.Model
 {
     public class Enemy
     {
-        public PointF Position { get; private set; }
+        public Point Position { get; private set; }
 
         public readonly int damage;
+
+        public readonly int Speed;
         // size 
 
-        public Enemy(float x, float y, int damage)
+        public Enemy(int x, int y, int damage)
         {
-            Position = new PointF(x, y);
+            Position = new Point(x, y);
             this.damage = damage;
+        }
+        public void Move(int dx, int dy)
+        {
+            Position = new Point(Position.X + dx*Speed, Position.Y + dy*Speed);
         }
     }
 }

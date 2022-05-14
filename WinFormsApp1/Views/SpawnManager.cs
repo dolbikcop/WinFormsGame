@@ -14,14 +14,14 @@ namespace WinFormsApp1
             _form1 = form1;
             timer = new Timer();
             timer.Interval = interval;
-            timer.Tick += (_, _) => AddEnemies(p);
+            timer.Tick += (_, _) => SpawnObject(p);
         }
 
         public void StartSpawn() => timer.Start();
         public void StopSpawn() => timer.Stop();
         
 
-        public void AddEnemies(PictureBox s)
+        public void SpawnObject(PictureBox s)
         {
             PictureBox p = new()
             {

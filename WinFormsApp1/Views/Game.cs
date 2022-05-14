@@ -38,15 +38,15 @@ namespace WinFormsApp1.Model
             Tag = "health",
             Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\HealthBonus.png")
         };
-        
-        
-        
-        public SpawnManager spawnHealth;
-
-        public Game(Player player)
+        public PictureBox enemyImage = new()
         {
-            this.player = player;
-        }
+            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Tag = "enemy",
+            Size = new Size(100, 100)
+        };
+
+        public SpawnManager spawnHealth;
+        public SpawnManager spawnEnemy;
 
         public Game(Form1 form)
         {
@@ -55,7 +55,10 @@ namespace WinFormsApp1.Model
             timer.Interval = 10;
             timer.Tick += (_, _) => UpdateForm();
             timer.Tick += (_, _) => PlayerView();
-
+            
+            spawnEnemy = new SpawnManager(f, 500, enemyImage);
+            spawnEnemy.StartSpawn();
+            
             timer.Tick += (_, _) => IntersectionObject();
             player = new Player(new Point(0, 0), 30, 12);
             
@@ -83,6 +86,15 @@ namespace WinFormsApp1.Model
         {
             foreach (var i in f.Controls)
             {
+                if (i is PictureBox box && box.Tag == "enemy")
+                {
+                    box.Location = new Point(box.Location.X+(box.Location.X<playerImage.Location.X ? 
+                            3 : 
+                            box.Location.X==playerImage.Location.X ? 0 : -3), 
+                        box.Location.Y+(box.Location.Y<playerImage.Location.Y ? 
+                            3 : 
+                            box.Location.Y==playerImage.Location.Y ? 0 : -3));
+                }
                 foreach (var j in f.Controls)
                 {
                     if (i is PictureBox && j is PictureBox && i != j)
@@ -94,7 +106,7 @@ namespace WinFormsApp1.Model
                             f.Controls.Remove(b);
                             b.Dispose();
                         }
-                    }
+                   }
                 }
             }
         }
