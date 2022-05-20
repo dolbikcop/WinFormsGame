@@ -8,66 +8,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using WinFormsApp1.Model;
 
 namespace WinFormsApp1
 {
-    public partial class Form1 : Form
+    public class Form1 : Form
     {
         private Game g;
+        public Graphics gr;
+        public View view;
         
-        public int HInput { get; private set; }
-        public int VInput { get; private set; }
         
+
+        public Label healthBar = new()
+        {
+            Text = "Health: ", 
+            Size = new Size(100, 100)
+        };
+
         public Form1()
         {
             ClientSize = new Size(1000, 1000);
+            
+            Controls.Add(healthBar);
+            
             Initialize();
         }
 
         private void Initialize()
         {
             g = new Game(this);
+            view = new View(g);
             
             Load += (_, _) => GoFullscreen(true);
             DoubleBuffered = true;
-            
-            //timer.Tick += (_, _) => IntersectionObject(); 
-            
-            
-        }
 
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            switch (e.KeyData)
-            {
-                case Keys.D:
-                    HInput = 1;
-                    break;
-                case Keys.A:
-                    HInput = -1;
-                    break;
-                case Keys.W:
-                    VInput = -1;
-                    break;
-                case Keys.S:
-                    VInput = 1;
-                    break;
-                case Keys.Escape:
-                    GoFullscreen(false);
-                    break;
-                case Keys.Enter:
-                    g.spawnHealth.StartSpawn();
-                    break;
-            }
-        }
-
-        protected override void OnKeyUp(KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.A || e.KeyData == Keys.D)
-                HInput = 0;
-            if (e.KeyData == Keys.W || e.KeyData == Keys.S)
-                VInput = 0;
+            Paint += (_, args) => view.UpdateGraphics(args.Graphics);
+            Paint += (_, _) => Invalidate();
+            KeyDown += (_, args) => Control.ControlKeys(args.KeyCode, true);
+            KeyUp += (_, args) => Control.ControlKeys(args.KeyCode, false);
         }
 
         private void GoFullscreen(bool fullscreen)
@@ -84,6 +62,5 @@ namespace WinFormsApp1
                 FormBorderStyle = FormBorderStyle.Sizable;
             }
         }
-        
     }
 }

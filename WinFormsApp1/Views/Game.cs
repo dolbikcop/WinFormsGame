@@ -6,94 +6,71 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp1.Model
+namespace WinFormsApp1
 {
     public class Game
     {
-        public readonly Player player;
+        public readonly Player player = new(new Point(0, 0), 1, 12);
+        public Enemy enemySourse = new (1, 1);
+        public HealthBonus HealthBonus = new(10);
+
+        public List<Rectangle> enemys = new List<Rectangle>();
 
         public Size size;
         private Form1 f;
         private Timer timer;
 
-        private Label healthBar = new()
-        {
-            Text = "Health: ", 
-        };
-
-
-
-
-
-        PictureBox playerImage = new()
-        {
-            ImageLocation = @"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\character.png", 
-            Height = 100, Width = 100,
-            Tag = "player"
-        };
-
-        private PictureBox hBonusImage = new()
-        {
-            Size = new Size(50, 50),
-            Tag = "health",
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\HealthBonus.png")
-        };
-        public PictureBox enemyImage = new()
-        {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
-            Tag = "enemy",
-            Size = new Size(100, 100)
-        };
-
         public SpawnManager spawnHealth;
         public SpawnManager spawnEnemy;
 
+        Timer upTimer = new() { Interval = 10};
         public Game(Form1 form)
         {
             f=form;
-            var timer = new Timer();
-            timer.Interval = 10;
-            timer.Tick += (_, _) => UpdateForm();
-            timer.Tick += (_, _) => PlayerView();
             
-            spawnEnemy = new SpawnManager(f, 500, enemyImage);
+            upTimer.Tick += (_, _) => UpdateForm();
+            upTimer.Tick += (_, _) => IntersectionObject();
+            upTimer.Start();
+
+            spawnEnemy = new SpawnManager(f, 2000, enemySourse.View);
             spawnEnemy.StartSpawn();
+
+            spawnHealth = new SpawnManager(f, 10000, HealthBonus.View);
             
-            timer.Tick += (_, _) => IntersectionObject();
-            player = new Player(new Point(0, 0), 30, 12);
+            //f.Controls.Add(player.View);
             
-            f.Controls.Add(playerImage);
-            timer.Start();
-            
-            spawnHealth = new SpawnManager(f, 10000, hBonusImage);
-            f.Controls.Add(healthBar);
-        }
-        void PlayerView()
-        {
-            playerImage.Location = new Point(f.ClientSize.Width / 2 + player.X,
-                f.ClientSize.Height / 2 + player.Y);
+            player.Move(f.ClientSize.Width / 2, f.ClientSize.Height / 2);
         }
 
         private void UpdateForm()
         {
-            player.Move(f.HInput, f.VInput);
-            healthBar.Text = "Health: " + player.Health;
+            if (player.Health <= 0)
+                LoseGame();
+            f.healthBar.Text = "Health: " + player.Health+ " " + player.Position.X+ " " + player.Position.Y;
             f.Invalidate();
         }
-        
-        
+
+        private void LoseGame()
+        {
+            timer.Stop();
+            spawnEnemy.StopSpawn();
+            spawnHealth.StopSpawn();
+            f.Controls.Add(new Label{Text = "You're loser:(", Location = player.Position, ForeColor = Color.Red});
+        }
+
+
         private void IntersectionObject()
         {
             foreach (var i in f.Controls)
             {
                 if (i is PictureBox box && box.Tag == "enemy")
                 {
-                    box.Location = new Point(box.Location.X+(box.Location.X<playerImage.Location.X ? 
-                            3 : 
-                            box.Location.X==playerImage.Location.X ? 0 : -3), 
-                        box.Location.Y+(box.Location.Y<playerImage.Location.Y ? 
-                            3 : 
-                            box.Location.Y==playerImage.Location.Y ? 0 : -3));
+                    box.Location = new Point(box.Location.X+(box.Location.X<player.X ? 
+                            enemySourse.Speed : 
+                            box.Location.X==player.X ? 0 : -enemySourse.Speed), 
+                        box.Location.Y+(box.Location.Y<player.Y ? 
+                            enemySourse.Speed : 
+                            box.Location.Y==player.Y ? 0 : -enemySourse.Speed));
                 }
                 foreach (var j in f.Controls)
                 {
@@ -102,9 +79,13 @@ namespace WinFormsApp1.Model
                         PictureBox a = (PictureBox)i, b=(PictureBox)j;
                         if (a.Tag == "player" && b.Tag == "health" && a.Bounds.IntersectsWith(b.Bounds))
                         {
-                            player.TakeHealth(10);
+                            player.TakeHealth(HealthBonus.Bonus);
                             f.Controls.Remove(b);
                             b.Dispose();
+                        }
+                        if (a.Tag == "player" && b.Tag == "enemy" && a.Bounds.IntersectsWith(b.Bounds))
+                        {
+                            player.TakeDamage(enemySourse.Damage);
                         }
                    }
                 }

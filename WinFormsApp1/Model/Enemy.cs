@@ -1,24 +1,24 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
-namespace WinFormsApp1.Model
+namespace WinFormsApp1
 {
     public class Enemy
     {
-        public Point Position { get; private set; }
-
-        public readonly int damage;
-
+        public readonly int Damage;
         public readonly int Speed;
-        // size 
+        
+        public PictureBox View = new()
+        {
+            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Tag = "enemy",
+            Size = new Size(100, 100)
+        };
 
-        public Enemy(int x, int y, int damage)
+        public Enemy(int damage, int speed)
         {
-            Position = new Point(x, y);
-            this.damage = damage;
-        }
-        public void Move(int dx, int dy)
-        {
-            Position = new Point(Position.X + dx*Speed, Position.Y + dy*Speed);
+            Damage = damage;
+            Speed = speed;
         }
     }
 }
