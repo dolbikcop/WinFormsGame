@@ -10,6 +10,8 @@ namespace WinFormsApp1
             get => View.Location;
             set => View.Location = value;
         }
+        public Rectangle Bounds => View.Bounds;
+        public Image Image => View.Image;
         
         public PictureBox View = new()
         {
@@ -25,8 +27,7 @@ namespace WinFormsApp1
         public int X => Position.X;
 
         public int Y => Position.Y;
-
-        // energy
+        
         public int Score { get; set; }
 
         public Player(Point start, int speed, int health)
@@ -39,18 +40,19 @@ namespace WinFormsApp1
 
         public void Move(int dx, int dy)
         {
-            Position = new Point(Position.X + dx * Speed, Position.Y + dy * Speed);
+            var delta = new Size(dx * Speed, dy * Speed);
+            Position = Point.Add(Position, delta);
         }
         public void Move()
         {
             if (Control.IsInputDown)
-                Position = new Point(Position.X, Position.Y + Speed);
+                Move(0, 1);
             if (Control.IsInputUp)
-                Position = new Point(Position.X, Position.Y - Speed);
+                Move(0, -1);
             if (Control.IsInputRight)
-                Position = new Point(Position.X + Speed, Position.Y);
+                Move(1, 0);
             if (Control.IsInputLeft)
-                Position = new Point(Position.X - Speed, Position.Y);
+                Move(-1, 0);
         }
 
         public void TakeDamage(int damage)
