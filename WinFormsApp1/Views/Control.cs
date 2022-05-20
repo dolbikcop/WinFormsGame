@@ -31,9 +31,24 @@ namespace WinFormsApp1
                 case Keys.R:
                     Application.Restart();
                     break;
-                /*case Keys.F:
-                    View.GoFullscreen();
-                    break;*/
+                case Keys.F:
+                    GoFullscreen(false, Form.ActiveForm);
+                    break;
+            }
+        }
+        
+        public static void GoFullscreen(bool fullscreen, Form f)
+        {
+            if (fullscreen)
+            {
+                f.WindowState = FormWindowState.Normal;
+                f.FormBorderStyle = FormBorderStyle.None;
+                f.Bounds = Screen.PrimaryScreen.Bounds;
+            }
+            else
+            {
+                f.WindowState = FormWindowState.Maximized;
+                f.FormBorderStyle = FormBorderStyle.Sizable;
             }
         }
     }

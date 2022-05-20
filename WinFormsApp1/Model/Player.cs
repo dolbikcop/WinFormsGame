@@ -10,7 +10,15 @@ namespace WinFormsApp1
             get => View.Location;
             set => View.Location = value;
         }
-
+        
+        public PictureBox View = new()
+        {
+            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\character.png"),
+            Height = 100, Width = 100,
+            Tag = "player",
+            Location = new Point(0, 0)
+        };
+        
         public readonly int Speed;
         public int Health { get; private set; }
 

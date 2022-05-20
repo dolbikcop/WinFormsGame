@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace WinFormsApp1
 {
@@ -39,7 +31,7 @@ namespace WinFormsApp1
             g = new Game(this);
             view = new View(g);
             
-            Load += (_, _) => GoFullscreen(true);
+            Load += (_, _) => Control.GoFullscreen(true, this);
             DoubleBuffered = true;
 
             Paint += (_, args) => view.UpdateGraphics(args.Graphics);
@@ -47,20 +39,6 @@ namespace WinFormsApp1
             KeyDown += (_, args) => Control.ControlKeys(args.KeyCode, true);
             KeyUp += (_, args) => Control.ControlKeys(args.KeyCode, false);
         }
-
-        private void GoFullscreen(bool fullscreen)
-        {
-            if (fullscreen)
-            {
-                WindowState = FormWindowState.Normal;
-                FormBorderStyle = FormBorderStyle.None;
-                Bounds = Screen.PrimaryScreen.Bounds;
-            }
-            else
-            {
-                WindowState = FormWindowState.Maximized;
-                FormBorderStyle = FormBorderStyle.Sizable;
-            }
-        }
+        
     }
 }
