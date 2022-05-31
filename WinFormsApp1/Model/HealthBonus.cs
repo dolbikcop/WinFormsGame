@@ -12,9 +12,9 @@ namespace WinFormsApp1
         
         public PictureBox View = new()
         {
-            Size = new Size(50, 50),
             Tag = "health",
-            Image = Resources.HealthBonus
+            Image = Resources.HealthBonus,
+            Size = Resources.HealthBonus.Size
         };
 
         public HealthBonus(int b)

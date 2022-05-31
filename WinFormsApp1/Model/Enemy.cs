@@ -5,19 +5,19 @@ namespace WinFormsApp1
 {
     public class Enemy
     {
-        public readonly int Damage;
-        public readonly int Speed;
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
         public Image Image => View.Image;
         
-        private PictureBox View = new()
+        public PictureBox View = new()
         {
             Image = Resources.Enemy,
             Tag = "enemy",
             Size = new Size(100, 100)
         };
 
+        public readonly int Damage;
+        public readonly int Speed;
         public Enemy(int damage, int speed, Rectangle r)
         {
             Damage = damage;

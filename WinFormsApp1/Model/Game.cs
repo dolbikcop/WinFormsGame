@@ -36,7 +36,7 @@ namespace WinFormsApp1
         {
             foreach (var e in Enemies)
             {
-                if (e.Bounds.IntersectsWith(player.Bounds))
+                if (e.View.Bounds.IntersectsWith(player.Bounds))
                     player.TakeDamage(e.Damage);
                 else
                 {
@@ -55,7 +55,7 @@ namespace WinFormsApp1
                 var b = HealthBonuses[i];
                 if (b.Bounds.IntersectsWith(player.Bounds))
                 {
-                    player.View.Bounds.Inflate(new Size(-50, -50));
+                    player.Bounds.Inflate(new Size(-50, -50));
                     player.TakeHealth(10);
                     HealthBonuses.RemoveAt(i);
                     SpawnManager.Spawn(ref HealthBonuses, 1, player.Position);

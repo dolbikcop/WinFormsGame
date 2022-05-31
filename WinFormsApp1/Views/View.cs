@@ -20,7 +20,7 @@ namespace WinFormsApp1
         }
         public void UpdateGraphics(Graphics g)
         {
-            g.Clear(Color.Indigo);
+            g.Clear(Color.Azure);
             
             g.TranslateTransform(-_game.player.X+500, -_game.player.Y+500);
             
