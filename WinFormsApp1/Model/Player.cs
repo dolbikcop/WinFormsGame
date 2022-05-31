@@ -45,13 +45,13 @@ namespace WinFormsApp1
         }
         public void Move()
         {
-            if (Control.IsInputDown)
+            if (Controller.IsInputDown)
                 Move(0, 1);
-            if (Control.IsInputUp)
+            if (Controller.IsInputUp)
                 Move(0, -1);
-            if (Control.IsInputRight)
+            if (Controller.IsInputRight)
                 Move(1, 0);
-            if (Control.IsInputLeft)
+            if (Controller.IsInputLeft)
                 Move(-1, 0);
         }
 

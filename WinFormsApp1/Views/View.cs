@@ -28,10 +28,12 @@ namespace WinFormsApp1
             
             DrawObjects(g);
         }
-
+        
         private void DrawObjects(Graphics g)
         {
+            _game.ActiveForm.label.Text = _game.player.Health.ToString();
             g.DrawRectangle(Pens.Azure, _game.ViewZone);
+            
             g.DrawImage(_game.player.Image, _game.player.Position);
             
             g.DrawRectangle(Pens.Aquamarine, _game.player.Bounds);

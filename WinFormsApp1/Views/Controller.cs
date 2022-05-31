@@ -2,7 +2,7 @@
 
 namespace WinFormsApp1
 {
-    internal class Control
+    internal class Controller
     {
         public static bool IsInputUp { get; private set; }
         public static bool IsInputLeft { get; private set; }
