@@ -36,13 +36,16 @@ namespace WinFormsApp1
             g.DrawRectangle(Pens.Aquamarine, _game.player.Bounds);
             
             foreach (var enemy in _game.Enemies)
-                g.DrawImage(enemy.Image, enemy.Bounds);
+                //if (enemy.Bounds.IntersectsWith(_game.ActiveForm.ClientRectangle))
+                    g.DrawImage(enemy.Image, enemy.Bounds);
             
             foreach (var bonus in _game.HealthBonuses)
-                g.DrawImage(bonus.Image, bonus.Bounds);
+                //if (bonus.Bounds.IntersectsWith(_game.ActiveForm.ClientRectangle))
+                    g.DrawImage(bonus.Image, bonus.Bounds);
             
             foreach (var item in _game.Items)
-                g.FillRectangle(Brushes.Yellow, item);
+                //if (item.IntersectsWith(_game.ActiveForm.ClientRectangle)) 
+                    g.DrawImage(Resources.Bush, item);
         }
     }
 }

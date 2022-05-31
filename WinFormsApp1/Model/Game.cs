@@ -14,9 +14,11 @@ namespace WinFormsApp1
         public List<HealthBonus> HealthBonuses = new();
         
         public List<Rectangle> Items = new();
+        public Form1 ActiveForm;
 
-        public Game()
+        public Game(Form1 form1)
         {
+            ActiveForm = form1;
             SpawnManager.Spawn(ref Enemies, 12, Point.Empty);
             SpawnManager.Spawn(ref HealthBonuses, 20, Point.Empty);
             SpawnManager.Spawn(ref Items, 5, Point.Empty);

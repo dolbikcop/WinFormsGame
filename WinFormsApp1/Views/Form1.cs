@@ -17,7 +17,7 @@ namespace WinFormsApp1
 
         private void Initialize()
         {
-            g = new Game();
+            g = new Game(this);
             view = new View(g);
             
             Load += (_, _) => Control.GoFullscreen(true, this);

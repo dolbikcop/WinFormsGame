@@ -11,7 +11,7 @@ namespace WinFormsApp1
         public static void Spawn(ref List<Rectangle> r, int count, Point p)
         {
             for(int i = 0; i<count; i++)
-                r.Add(SpawnObjectWithSize(new Size(30, 30), p));
+                r.Add(SpawnObjectWithSize(new Size(70, 70), p));
         }
         
         public static void Spawn(ref List<Enemy> r, int count, Point p)
