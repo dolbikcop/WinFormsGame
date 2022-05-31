@@ -20,8 +20,8 @@ namespace WinFormsApp1
         }
         public void UpdateGraphics(Graphics g)
         {
-            g.Clear(Color.Azure);
-            
+            g.Clear(Color.MidnightBlue);
+
             g.TranslateTransform(-_game.player.X+500, -_game.player.Y+500);
             
             _game.Update();
@@ -31,20 +31,21 @@ namespace WinFormsApp1
 
         private void DrawObjects(Graphics g)
         {
+            g.DrawRectangle(Pens.Azure, _game.ViewZone);
             g.DrawImage(_game.player.Image, _game.player.Position);
             
             g.DrawRectangle(Pens.Aquamarine, _game.player.Bounds);
             
             foreach (var enemy in _game.Enemies)
-                //if (enemy.Bounds.IntersectsWith(_game.ActiveForm.ClientRectangle))
+                if (enemy.Bounds.IntersectsWith(_game.ViewZone))
                     g.DrawImage(enemy.Image, enemy.Bounds);
             
             foreach (var bonus in _game.HealthBonuses)
-                //if (bonus.Bounds.IntersectsWith(_game.ActiveForm.ClientRectangle))
+                if (bonus.Bounds.IntersectsWith(_game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
             
             foreach (var item in _game.Items)
-                //if (item.IntersectsWith(_game.ActiveForm.ClientRectangle)) 
+                if (item.IntersectsWith(_game.ViewZone))
                     g.DrawImage(Resources.Bush, item);
         }
     }

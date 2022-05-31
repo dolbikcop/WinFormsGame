@@ -16,6 +16,11 @@ namespace WinFormsApp1
         public List<Rectangle> Items = new();
         public Form1 ActiveForm;
 
+        public Rectangle ViewZone =>
+            new Rectangle(
+                new Point(player.Position.X - 100, player.Position.Y - 100),
+                player.Bounds.Size + new Size(200, 200));
+
         public Game(Form1 form1)
         {
             ActiveForm = form1;
