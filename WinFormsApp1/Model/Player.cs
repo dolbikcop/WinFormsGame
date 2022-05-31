@@ -15,8 +15,8 @@ namespace WinFormsApp1
         
         public PictureBox View = new()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\character.png"),
-            Height = 100, Width = 100,
+            Image = Resources.MainHero,
+            Size = Resources.MainHero.Size,
             Tag = "player",
             Location = new Point(0, 0)
         };

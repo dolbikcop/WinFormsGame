@@ -14,7 +14,7 @@ namespace WinFormsApp1
         {
             Size = new Size(50, 50),
             Tag = "health",
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\HealthBonus.png")
+            Image = Resources.HealthBonus
         };
 
         public HealthBonus(int b)

@@ -9,7 +9,7 @@ namespace WinFormsApp1
         
         public PictureBox enemyView = new()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Image = Resources.Enemy,
             Tag = "enemy",
             Size = new Size(100, 100)
         };
@@ -20,14 +20,16 @@ namespace WinFormsApp1
         }
         public void UpdateGraphics(Graphics g)
         {
+            g.Clear(Color.Indigo);
+            
             g.TranslateTransform(-_game.player.X+500, -_game.player.Y+500);
             
             _game.Update();
             
-            DrawObject(g);
+            DrawObjects(g);
         }
 
-        private void DrawObject(Graphics g)
+        private void DrawObjects(Graphics g)
         {
             g.DrawImage(_game.player.Image, _game.player.Position);
             
@@ -40,7 +42,7 @@ namespace WinFormsApp1
                 g.DrawImage(bonus.Image, bonus.Bounds);
             
             foreach (var item in _game.Items)
-                g.DrawRectangle(Pens.Chartreuse, item);
+                g.FillRectangle(Brushes.Yellow, item);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace WinFormsApp1
         
         private PictureBox View = new()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Image = Resources.Enemy,
             Tag = "enemy",
             Size = new Size(100, 100)
         };
