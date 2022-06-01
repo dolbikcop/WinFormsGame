@@ -24,6 +24,10 @@ namespace WinFormsApp1
             for(int i = 0; i<count; i++)
                 r.Add(new HealthBonus(SpawnObjectWithSize(new Size(30, 30), p)));
         }
+       /*public static void Spawn<T>(ref List<T> r, int count, Point p)
+       {
+           
+       }*/
         
         public static Rectangle SpawnObjectWithSize(Size s, Point p) 
             => new ()

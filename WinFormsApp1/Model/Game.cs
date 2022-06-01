@@ -13,8 +13,9 @@ namespace WinFormsApp1
 
         public List<HealthBonus> HealthBonuses = new();
         
-        public List<Rectangle> Items = new();
+        public List<Rectangle> Bushes = new();
         public Form1 ActiveForm;
+        public PlayerStage pStage;
 
         public Rectangle ViewZone =>
             new Rectangle(
@@ -26,7 +27,9 @@ namespace WinFormsApp1
             ActiveForm = form1;
             SpawnManager.Spawn(ref Enemies, 12, Point.Empty);
             SpawnManager.Spawn(ref HealthBonuses, 20, Point.Empty);
-            SpawnManager.Spawn(ref Items, 5, Point.Empty);
+            SpawnManager.Spawn(ref Bushes, 5, Point.Empty);
+
+            pStage = PlayerStage.Normal;
         }
 
         public void Update()
@@ -41,18 +44,19 @@ namespace WinFormsApp1
         }
         private void EnemyUpdate()
         {
-            foreach (var e in Enemies)
-            {
-                if (e.View.Bounds.IntersectsWith(player.Bounds))
-                    player.TakeDamage(e.Damage);
-                else
+            if (pStage==PlayerStage.Normal)
+                foreach (var e in Enemies)
                 {
-                    if (e.Position.X > player.X) e.Move(-1, 0);
-                    else if (e.Position.X < player.X) e.Move(1, 0);
-                    if (e.Position.Y < player.Y) e.Move(0, 1);
-                    else if (e.Position.Y > player.Y) e.Move(0, -1);
+                    if (e.View.Bounds.IntersectsWith(player.Bounds))
+                        player.TakeDamage(e.Damage);
+                    else
+                    {
+                        if (e.Position.X > player.X) e.Move(-1, 0);
+                        else if (e.Position.X < player.X) e.Move(1, 0);
+                        if (e.Position.Y < player.Y) e.Move(0, 1);
+                        else if (e.Position.Y > player.Y) e.Move(0, -1);
+                    }
                 }
-            }
         }
 
         private void BonusUpdate()

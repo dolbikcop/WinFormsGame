@@ -8,18 +8,21 @@ namespace WinFormsApp1
         private Game g;
         public View view;
         
-        public Label label = new Label
+        public Label label = new Label()
         {
             TextAlign = ContentAlignment.MiddleLeft,
-            Font = new Font(FontFamily.GenericMonospace, 24, FontStyle.Bold),
-            Size = new Size(400, 400),
-            Location = new Point(0, 0)
+            Font = new Font(FontFamily.GenericMonospace, 30, FontStyle.Bold),
+            AutoSize = true,
+            //Location = new Point(0, 0), 
+            ForeColor = Color.Azure, 
+            Text = "Play",
+            BackColor = Color.Brown,
+            Visible = true
         };
         
         public Form1()
         {
-            //ClientSize = new Size(1000, 1000);
-            Controls.Add(label);    
+            Controls.Add(label); 
             Initialize();
         }
 
@@ -27,15 +30,17 @@ namespace WinFormsApp1
         {
             g = new Game(this);
             view = new View(g);
-            
-            Load += (_, _) => Controller.GoFullscreen(true, this);
+
             DoubleBuffered = true;
+            Load += (_, _) => Controller.GoFullscreen(true, this);
 
             Paint += (_, args) => view.UpdateGraphics(args.Graphics);
             Paint += (_, _) => Invalidate();
             
             KeyDown += (_, args) => Controller.ControlKeys(args.KeyCode, true);
             KeyUp += (_, args) => Controller.ControlKeys(args.KeyCode, false);
+            
+            MouseMove+=(_, _) => label.Text = g.player.Position.ToString();
         }
         
     }

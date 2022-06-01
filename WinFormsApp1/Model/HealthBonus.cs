@@ -5,7 +5,6 @@ namespace WinFormsApp1
 {
     public class HealthBonus
     {
-        public int Bonus;
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
         public Image Image => View.Image;
@@ -17,6 +16,7 @@ namespace WinFormsApp1
             Size = Resources.HealthBonus.Size
         };
 
+        public int Bonus;
         public HealthBonus(int b)
         {
             Bonus = b;

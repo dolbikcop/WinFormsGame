@@ -8,6 +8,7 @@ namespace WinFormsApp1
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
         public Image Image => View.Image;
+        public Point StartPosition;
         
         public PictureBox View = new()
         {
@@ -23,6 +24,7 @@ namespace WinFormsApp1
             Damage = damage;
             Speed = speed;
             View.Bounds = r;
+            StartPosition = r.Location;
         }
 
         public Enemy(Rectangle r) : this(1, 1, r) {}

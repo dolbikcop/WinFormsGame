@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace WinFormsApp1
@@ -6,13 +7,6 @@ namespace WinFormsApp1
     public class View
     {
         private Game _game;
-        
-        public PictureBox enemyView = new()
-        {
-            Image = Resources.Enemy,
-            Tag = "enemy",
-            Size = new Size(100, 100)
-        };
 
         public View(Game game)
         {
@@ -20,9 +14,8 @@ namespace WinFormsApp1
         }
         public void UpdateGraphics(Graphics g)
         {
-            g.Clear(Color.MidnightBlue);
 
-            g.TranslateTransform(-_game.player.X+500, -_game.player.Y+500);
+            g.TranslateTransform(-_game.player.X+700, -_game.player.Y+450);
             
             _game.Update();
             
@@ -31,8 +24,8 @@ namespace WinFormsApp1
         
         private void DrawObjects(Graphics g)
         {
-            _game.ActiveForm.label.Text = _game.player.Health.ToString();
-            g.DrawRectangle(Pens.Azure, _game.ViewZone);
+            g.Clear(Color.MidnightBlue);
+            g.FillEllipse(Brushes.Azure, _game.ViewZone);
             
             g.DrawImage(_game.player.Image, _game.player.Position);
             
@@ -46,9 +39,11 @@ namespace WinFormsApp1
                 if (bonus.Bounds.IntersectsWith(_game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
             
-            foreach (var item in _game.Items)
+            foreach (var item in _game.Bushes)
                 if (item.IntersectsWith(_game.ViewZone))
                     g.DrawImage(Resources.Bush, item);
+            g.DrawString(_game.player.Health.ToString(), 
+                new Font(FontFamily.GenericMonospace, 24, FontStyle.Bold), Brushes.Chartreuse, new Point(0, 0));
         }
     }
 }
