@@ -13,13 +13,7 @@ namespace WinFormsApp1
             Point.Empty, 
             int.Parse(Resources.HeroStartSpeed), 
             int.Parse(Resources.HeroStartHealth));
-
-        public List<Enemy> Enemies;
-        public List<HealthBonus> HealthBonuses;
-        public List<Bush> Bushes;
         
-        //stages
-        public PlayerStage PlayerStage;
         public GameStage GameStage;
         
         public Rectangle ViewZone =>
@@ -28,17 +22,17 @@ namespace WinFormsApp1
 
         public Game()
         {
-            Enemies = SpawnManager.Spawn(int.Parse(Resources.EnemyCount), Point.Empty)
+            Enemy.Objects = SpawnManager.Spawn(int.Parse(Resources.EnemyCount), Point.Empty)
                 .Select(x=>new Enemy(x))
                 .ToList();
-            HealthBonuses = SpawnManager.Spawn(int.Parse(Resources.BonusCount), Point.Empty)
+            HealthBonus.Objects = SpawnManager.Spawn(int.Parse(Resources.BonusCount), Point.Empty)
                 .Select(x=>new HealthBonus(x))
                 .ToList();
-            Bushes = SpawnManager.Spawn(int.Parse(Resources.BushCount), Point.Empty)
+            Bush.Objects = SpawnManager.Spawn(int.Parse(Resources.BushCount), Point.Empty)
                 .Select(x=>new Bush(x))
                 .ToList();
 
-            PlayerStage = PlayerStage.Normal;
+            player.Stage = PlayerStage.Normal;
             GameStage = GameStage.Play;
         }
 
@@ -47,45 +41,16 @@ namespace WinFormsApp1
             if (GameStage == GameStage.Play)
             {
                 
-                EnemyUpdate();
-                BonusUpdate();
+                Enemy.Update(player);
+                HealthBonus.Update(player);
+                Bush.Update(player);
             
                 player.Move();
                 
                 if (player.Health <= 0)
                 {
-                    PlayerStage = PlayerStage.Died;
+                    player.Stage = PlayerStage.Died;
                     GameStage = GameStage.Lose;
-                }
-            }
-        }
-        private void EnemyUpdate()
-        {
-            if (PlayerStage==PlayerStage.Normal)
-                foreach (var e in Enemies)
-                {
-                    if (e.View.Bounds.IntersectsWith(player.Bounds))
-                        player.TakeDamage(Enemy.Damage);
-                    else
-                    {
-                        if (e.Position.X > player.X) e.Move(-Enemy.Speed, 0);
-                        else if (e.Position.X < player.X) e.Move(Enemy.Speed, 0);
-                        if (e.Position.Y < player.Y) e.Move(0, Enemy.Speed);
-                        else if (e.Position.Y > player.Y) e.Move(0, -Enemy.Speed);
-                    }
-                }
-        }
-
-        private void BonusUpdate()
-        {
-            for (int i = 0; i<HealthBonuses.Count; i++)
-            {
-                var b = HealthBonuses[i];
-                if (b.Bounds.IntersectsWith(player.Bounds))
-                {
-                    player.TakeHealth(HealthBonus.Bonus);
-                    HealthBonuses.RemoveAt(i);
-                    HealthBonuses.Add(new HealthBonus(SpawnManager.Spawn(1, player.Position).First()));
                 }
             }
         }

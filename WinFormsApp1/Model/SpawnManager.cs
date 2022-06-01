@@ -7,6 +7,8 @@ namespace WinFormsApp1
 {
     public static class SpawnManager
     {
+        private static int spawnMin => int.Parse(Resources.SpawnLocationMin);
+        private static int spawnMax => int.Parse(Resources.SpawnLocationMax);
         private static Random r = new();
         public static IEnumerable<Rectangle> Spawn(int count, Point p)
         {
@@ -25,12 +27,12 @@ namespace WinFormsApp1
         {
             var result = new Point(p.X, p.Y);
 
-            while ((result.X > p.X - 500 && result.X < p.X + 500) 
-                   || (result.Y > p.Y - 500 && result.Y < p.Y + 500))
+            while ((result.X > p.X - spawnMin && result.X < p.X + spawnMin) 
+                   || (result.Y > p.Y - spawnMin && result.Y < p.Y + spawnMin))
             {
-                var randomLocationX = r.Next(p.X - 800, 800 + p.X);
+                var randomLocationX = r.Next(p.X - spawnMax, spawnMax + p.X);
 
-                var randomLocationY = r.Next(p.Y - 800, 800 + p.Y);
+                var randomLocationY = r.Next(p.Y - spawnMax, spawnMax + p.Y);
 
                 result = new Point(randomLocationX, randomLocationY);
             }

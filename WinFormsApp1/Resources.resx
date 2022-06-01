@@ -33,8 +33,8 @@
     <data name="Bush" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>..\WinFormsApp1\Sprites\bush.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     </data>
-    <data name="_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\WinFormsApp1\Sprites\speed_bonus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <data name="Interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\interface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     </data>
     <data name="__" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>..\WinFormsApp1\Sprites\speed_bonus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -65,5 +65,11 @@
     </data>
     <data name="StartViewRadius" xml:space="preserve">
         <value>500</value>
+    </data>
+    <data name="SpawnLocationMin" xml:space="preserve">
+        <value>500</value>
+    </data>
+    <data name="SpawnLocationMax" xml:space="preserve">
+        <value>1500</value>
     </data>
 </root>

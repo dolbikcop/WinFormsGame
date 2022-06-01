@@ -6,51 +6,50 @@ namespace WinFormsApp1
 {
     public class View
     {
-        private Game _game;
+        private Game game;
+        private UI ui;
 
         public View(Game game)
         {
-            _game = game;
+            this.game = game;
+            ui = new UI(game);
         }
         public void UpdateGraphics(Graphics g)
         {
             //transform camera
-            g.TranslateTransform(-_game.player.X+700, -_game.player.Y+450);
-
-            if (_game.GameStage != GameStage.Pause)
+            g.TranslateTransform(-game.player.X+700, -game.player.Y+450);
+            if (game.GameStage != GameStage.Pause)
             {
-                _game.Update();
+                game.Update();
             
                 DrawObjects(g);   
             }
+            
+            ui.UpdateUI(g);
         }
         
         private void DrawObjects(Graphics g)
         {
             //BackgroundColor
             g.Clear(Color.MidnightBlue);
-            g.FillEllipse(Brushes.Azure, _game.ViewZone);
+            g.FillEllipse(Brushes.Azure, game.ViewZone);
             
-            g.DrawImage(_game.player.Image, _game.player.Position);
+            g.DrawImage(game.player.Image, game.player.Position);
             
             //bounds of player
-            g.DrawRectangle(Pens.Aquamarine, _game.player.Bounds);
+            g.DrawRectangle(Pens.Aquamarine, game.player.Bounds);
             
-            foreach (var enemy in _game.Enemies)
-                if (enemy.Bounds.IntersectsWith(_game.ViewZone))
+            foreach (var enemy in Enemy.Objects)
+                if (enemy.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(enemy.Image, enemy.Bounds);
             
-            foreach (var bonus in _game.HealthBonuses)
-                if (bonus.Bounds.IntersectsWith(_game.ViewZone))
+            foreach (var bonus in HealthBonus.Objects)
+                if (bonus.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
             
-            foreach (var item in _game.Bushes)
-                if (item.Bounds.IntersectsWith(_game.ViewZone))
+            foreach (var item in Bush.Objects)
+                if (item.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(item.Image, item.Bounds);
-            
-            //test string
-            g.DrawString(_game.player.Health.ToString(), 
-                new Font(FontFamily.GenericMonospace, 24, FontStyle.Bold), Brushes.Chartreuse, new Point(0, 0));
         }
     }
 }

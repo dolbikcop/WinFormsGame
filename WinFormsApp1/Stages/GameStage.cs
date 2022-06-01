@@ -2,7 +2,7 @@
 {
     public enum GameStage
     {
-        Pause, 
+        Pause,
         Play,
         Lose
     }

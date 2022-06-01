@@ -23,13 +23,16 @@ namespace WinFormsApp1
         
         public readonly int Speed;
         public int Health { get; private set; }
-
         public int X => Position.X;
 
         public int Y => Position.Y;
 
         public int Radius = int.Parse(Resources.StartViewRadius);
 
+        private EnergyManager eManager = new EnergyManager();
+        public int Energy => eManager.Energy;
+
+        public PlayerStage Stage;
         public Player(Point start, int speed, int health)
         {
             Position = start;
