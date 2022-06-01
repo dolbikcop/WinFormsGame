@@ -27,15 +27,14 @@ namespace WinFormsApp1
         public int X => Position.X;
 
         public int Y => Position.Y;
-        
-        public int Score { get; set; }
+
+        public int Radius = int.Parse(Resources.StartViewRadius);
 
         public Player(Point start, int speed, int health)
         {
             Position = start;
             Speed = speed;
             Health = health;
-            Score = 0;
         }
 
         public void Move(int dx, int dy)

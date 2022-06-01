@@ -4,6 +4,7 @@
     {
         None, 
         Normal, 
-        Hidden
+        Hidden, 
+        Died
     }
 }

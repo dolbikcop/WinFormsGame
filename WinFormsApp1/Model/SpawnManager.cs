@@ -8,26 +8,11 @@ namespace WinFormsApp1
     public static class SpawnManager
     {
         private static Random r = new();
-        public static void Spawn(ref List<Rectangle> r, int count, Point p)
+        public static IEnumerable<Rectangle> Spawn(int count, Point p)
         {
             for(int i = 0; i<count; i++)
-                r.Add(SpawnObjectWithSize(new Size(70, 70), p));
+                yield return SpawnObjectWithSize(new Size(30, 30), p);
         }
-        
-        public static void Spawn(ref List<Enemy> r, int count, Point p)
-        {
-            for(int i = 0; i<count; i++)
-                r.Add(new Enemy(SpawnObjectWithSize(new Size(100, 100), p)));
-        }
-        public static void Spawn(ref List<HealthBonus> r, int count, Point p)
-        {
-            for(int i = 0; i<count; i++)
-                r.Add(new HealthBonus(SpawnObjectWithSize(new Size(30, 30), p)));
-        }
-       /*public static void Spawn<T>(ref List<T> r, int count, Point p)
-       {
-           
-       }*/
         
         public static Rectangle SpawnObjectWithSize(Size s, Point p) 
             => new ()
@@ -35,6 +20,7 @@ namespace WinFormsApp1
                 Size = s,
                 Location = GetValidSpawnLocation(p)
             };
+        
         private static Point GetValidSpawnLocation(Point p)
         {
             var result = new Point(p.X, p.Y);

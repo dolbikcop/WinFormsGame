@@ -1,0 +1,26 @@
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsApp1
+{
+    public class HealthBonus
+    {
+        public Rectangle Bounds => View.Bounds;
+        public Point Position => View.Location;
+        public Image Image => View.Image;
+        
+        public PictureBox View = new()
+        {
+            Tag = "health",
+            Image = Resources.HealthBonus,
+            Size = Resources.HealthBonus.Size
+        };
+
+        public static readonly int Bonus = int.Parse(Resources.HealthBonusValue);
+
+        public HealthBonus(Rectangle r)
+        {
+            View.Bounds = r;
+        }
+    }
+}

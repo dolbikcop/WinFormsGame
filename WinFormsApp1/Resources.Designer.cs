@@ -81,12 +81,30 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        internal static string BonusCount {
+            get {
+                return ResourceManager.GetString("BonusCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Bush {
             get {
                 object obj = ResourceManager.GetObject("Bush", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string BushCount {
+            get {
+                return ResourceManager.GetString("BushCount", resourceCulture);
             }
         }
         
@@ -101,12 +119,66 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        internal static string EnemyCount {
+            get {
+                return ResourceManager.GetString("EnemyCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string EnemyDamage {
+            get {
+                return ResourceManager.GetString("EnemyDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string EnemySpeed {
+            get {
+                return ResourceManager.GetString("EnemySpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap HealthBonus {
             get {
                 object obj = ResourceManager.GetObject("HealthBonus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        internal static string HealthBonusValue {
+            get {
+                return ResourceManager.GetString("HealthBonusValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 200.
+        /// </summary>
+        internal static string HeroStartHealth {
+            get {
+                return ResourceManager.GetString("HeroStartHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string HeroStartSpeed {
+            get {
+                return ResourceManager.GetString("HeroStartSpeed", resourceCulture);
             }
         }
         
@@ -127,6 +199,15 @@ namespace WinFormsApp1 {
             get {
                 object obj = ResourceManager.GetObject("SpeedBonus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 500.
+        /// </summary>
+        internal static string StartViewRadius {
+            get {
+                return ResourceManager.GetString("StartViewRadius", resourceCulture);
             }
         }
     }

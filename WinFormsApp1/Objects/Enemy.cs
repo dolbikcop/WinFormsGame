@@ -8,26 +8,23 @@ namespace WinFormsApp1
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
         public Image Image => View.Image;
-        public Point StartPosition;
         
+        public Point StartPosition;
+
         public PictureBox View = new()
         {
             Image = Resources.Enemy,
             Tag = "enemy",
-            Size = new Size(100, 100)
+            Size = Resources.Enemy.Size
         };
 
-        public readonly int Damage;
-        public readonly int Speed;
-        public Enemy(int damage, int speed, Rectangle r)
+        public static readonly int Damage = int.Parse(Resources.EnemyDamage);
+        public static readonly int Speed = int.Parse(Resources.EnemySpeed);
+        public Enemy(Rectangle r)
         {
-            Damage = damage;
-            Speed = speed;
             View.Bounds = r;
             StartPosition = r.Location;
         }
-
-        public Enemy(Rectangle r) : this(1, 1, r) {}
         
         public void Move(int dx, int dy)
         {

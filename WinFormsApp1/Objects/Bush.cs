@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public class HealthBonus
+    public class Bush
     {
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
@@ -11,18 +11,12 @@ namespace WinFormsApp1
         
         public PictureBox View = new()
         {
-            Tag = "health",
-            Image = Resources.HealthBonus,
-            Size = Resources.HealthBonus.Size
+            Tag = "bush",
+            Image = Resources.Bush,
+            Size = Resources.Bush.Size
         };
 
-        public int Bonus;
-        public HealthBonus(int b)
-        {
-            Bonus = b;
-        }
-
-        public HealthBonus(Rectangle r) : this(10)
+        public Bush(Rectangle r)
         {
             View.Bounds = r;
         }

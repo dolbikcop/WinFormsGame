@@ -2,59 +2,76 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System;
+using System.Linq;
 
 namespace WinFormsApp1
 {
     public class Game
     {
-        public readonly Player player = new(new Point(0, 0), 3, 200);
+        //objects
+        public readonly Player player = new(
+            Point.Empty, 
+            int.Parse(Resources.HeroStartSpeed), 
+            int.Parse(Resources.HeroStartHealth));
 
-        public List<Enemy> Enemies = new();
-
-        public List<HealthBonus> HealthBonuses = new();
+        public List<Enemy> Enemies;
+        public List<HealthBonus> HealthBonuses;
+        public List<Bush> Bushes;
         
-        public List<Rectangle> Bushes = new();
-        public Form1 ActiveForm;
-        public PlayerStage pStage;
-
+        //stages
+        public PlayerStage PlayerStage;
+        public GameStage GameStage;
+        
         public Rectangle ViewZone =>
-            new Rectangle(
-                new Point(player.Position.X - 100, player.Position.Y - 100),
-                player.Bounds.Size + new Size(200, 200));
+            new (new Point(player.Position.X - player.Radius, player.Position.Y - player.Radius),
+                player.Bounds.Size + new Size(player.Radius * 2, player.Radius * 2));
 
-        public Game(Form1 form1)
+        public Game()
         {
-            ActiveForm = form1;
-            SpawnManager.Spawn(ref Enemies, 12, Point.Empty);
-            SpawnManager.Spawn(ref HealthBonuses, 20, Point.Empty);
-            SpawnManager.Spawn(ref Bushes, 5, Point.Empty);
+            Enemies = SpawnManager.Spawn(int.Parse(Resources.EnemyCount), Point.Empty)
+                .Select(x=>new Enemy(x))
+                .ToList();
+            HealthBonuses = SpawnManager.Spawn(int.Parse(Resources.BonusCount), Point.Empty)
+                .Select(x=>new HealthBonus(x))
+                .ToList();
+            Bushes = SpawnManager.Spawn(int.Parse(Resources.BushCount), Point.Empty)
+                .Select(x=>new Bush(x))
+                .ToList();
 
-            pStage = PlayerStage.Normal;
+            PlayerStage = PlayerStage.Normal;
+            GameStage = GameStage.Play;
         }
 
         public void Update()
         {
-            EnemyUpdate();
-            BonusUpdate();
+            if (GameStage == GameStage.Play)
+            {
+                
+                EnemyUpdate();
+                BonusUpdate();
             
-            player.Move();
-            
-            if (player.Health<=0)
-                Application.Restart();
+                player.Move();
+                
+                if (player.Health <= 0)
+                {
+                    PlayerStage = PlayerStage.Died;
+                    GameStage = GameStage.Lose;
+                }
+            }
         }
         private void EnemyUpdate()
         {
-            if (pStage==PlayerStage.Normal)
+            if (PlayerStage==PlayerStage.Normal)
                 foreach (var e in Enemies)
                 {
                     if (e.View.Bounds.IntersectsWith(player.Bounds))
-                        player.TakeDamage(e.Damage);
+                        player.TakeDamage(Enemy.Damage);
                     else
                     {
-                        if (e.Position.X > player.X) e.Move(-1, 0);
-                        else if (e.Position.X < player.X) e.Move(1, 0);
-                        if (e.Position.Y < player.Y) e.Move(0, 1);
-                        else if (e.Position.Y > player.Y) e.Move(0, -1);
+                        if (e.Position.X > player.X) e.Move(-Enemy.Speed, 0);
+                        else if (e.Position.X < player.X) e.Move(Enemy.Speed, 0);
+                        if (e.Position.Y < player.Y) e.Move(0, Enemy.Speed);
+                        else if (e.Position.Y > player.Y) e.Move(0, -Enemy.Speed);
                     }
                 }
         }
@@ -66,10 +83,9 @@ namespace WinFormsApp1
                 var b = HealthBonuses[i];
                 if (b.Bounds.IntersectsWith(player.Bounds))
                 {
-                    player.Bounds.Inflate(new Size(-50, -50));
-                    player.TakeHealth(10);
+                    player.TakeHealth(HealthBonus.Bonus);
                     HealthBonuses.RemoveAt(i);
-                    SpawnManager.Spawn(ref HealthBonuses, 1, player.Position);
+                    HealthBonuses.Add(new HealthBonus(SpawnManager.Spawn(1, player.Position).First()));
                 }
             }
         }
