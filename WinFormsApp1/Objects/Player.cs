@@ -84,5 +84,9 @@ namespace WinFormsApp1
         {
             Health += i;
         }
+        public void TakeEnergy(int i)
+        {
+            eManager.Energy += i;
+        }
     }
 }

@@ -18,7 +18,6 @@ namespace WinFormsApp1
         public PictureBox View = new()
         {
             Image = Resources.Enemy,
-            Tag = "enemy",
             Size = Resources.Enemy.Size
         };
 

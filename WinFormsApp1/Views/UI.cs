@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
@@ -30,6 +31,11 @@ namespace WinFormsApp1
             if (game.GameStage == GameStage.Lose)
                 g.DrawImage(Resources.InputInstrucion, 
                     Point.Add(game.player.Position, new Size(0, 0)));
+            
+            g.DrawString(Screen.PrimaryScreen.Bounds.Width + " " + Screen.PrimaryScreen.Bounds.Height, 
+                new Font(FontFamily.GenericMonospace, 24, FontStyle.Bold), 
+                Brushes.MistyRose,
+                Point.Add(game.player.Position, new Size(-500, -200)));
         }
     }
 }

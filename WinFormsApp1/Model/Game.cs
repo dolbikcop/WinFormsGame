@@ -31,46 +31,42 @@ namespace WinFormsApp1
             Bush.Objects = SpawnManager.Spawn(int.Parse(Resources.BushCount), Point.Empty)
                 .Select(x=>new Bush(x))
                 .ToList();
-
+            EnergyBonus.Objects = SpawnManager.Spawn(int.Parse(Resources.BonusCount), Point.Empty)
+                .Select(x => new EnergyBonus(x))
+                .ToList();
             player.Stage = PlayerStage.Normal;
             GameStage = GameStage.Play;
         }
 
         public void Update()
         {
-            if (GameStage == GameStage.Pause && !Controller.IsPaused)
+            switch (GameStage)
             {
-                player.Start();
-                GameStage = GameStage.Play;
+                case GameStage.Play:
+                    if (player.Health <= 0 || player.Energy <= 0)
+                        GameStage = GameStage.Lose;
+                    else if (Controller.IsPaused)
+                        GameStage = GameStage.Pause;
+                    
+                    Enemy.Update(player);
+                    HealthBonus.Update(player);
+                    Bush.Update(player);
+                    EnergyBonus.Update(player);
+                    
+                    player.Move();
+                    break;
+                case GameStage.Pause:
+                    player.Die();
+                    if (!Controller.IsPaused)
+                    {
+                        player.Start();
+                        GameStage = GameStage.Play;
+                    }
+                    break;
+                case GameStage.Lose:
+                    player.Die();
+                    break;
             }
-
-            if (GameStage == GameStage.Play && (player.Health <= 0 || player.Energy <= 0))
-            {
-                GameStage = GameStage.Lose;
-                player.Die();
-            }
-
-            if (Controller.IsPaused && GameStage == GameStage.Play)
-            {
-                GameStage = GameStage.Pause;
-                Pause();
-            }
-            if (GameStage == GameStage.Play)
-            {
-                
-                Enemy.Update(player);
-                HealthBonus.Update(player);
-                Bush.Update(player);
-            
-                player.Move();
-                
-                if (player.Health <= 0 || player.Energy<=0) player.Die();
-            }
-        }
-
-        public void Pause()
-        {
-            player.Die();
         }
     }
 }

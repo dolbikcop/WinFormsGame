@@ -28,19 +28,23 @@ namespace WinFormsApp1
         private void DrawObjects(Graphics g)
         {
             //BackgroundColor
-            g.Clear(Color.MidnightBlue);
-            g.FillEllipse(Brushes.Azure, game.ViewZone);
+            g.Clear(Color.Black);
             
+            g.FillEllipse(Brushes.SeaGreen, game.ViewZone);
+
+            var star = Resources.Star;
+            g.DrawImage(star, game.player.Position+new Size(10, -25));
             g.DrawImage(game.player.Image, game.player.Position);
-            
-            //bounds of player
-            g.DrawRectangle(Pens.Aquamarine, game.player.Bounds);
             
             foreach (var enemy in Enemy.Objects)
                 if (enemy.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(enemy.Image, enemy.Bounds);
             
             foreach (var bonus in HealthBonus.Objects)
+                if (bonus.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(bonus.Image, bonus.Bounds);
+            
+            foreach (var bonus in EnergyBonus.Objects)
                 if (bonus.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
             

@@ -61,16 +61,6 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap __ {
-            get {
-                object obj = ResourceManager.GetObject("__", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 20.
         /// </summary>
         internal static string BonusCount {
@@ -132,6 +122,25 @@ namespace WinFormsApp1 {
         internal static string EnemySpeed {
             get {
                 return ResourceManager.GetString("EnemySpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnergyBonus {
+            get {
+                object obj = ResourceManager.GetObject("EnergyBonus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        internal static string EnergyBonusValue {
+            get {
+                return ResourceManager.GetString("EnergyBonusValue", resourceCulture);
             }
         }
         
@@ -235,6 +244,16 @@ namespace WinFormsApp1 {
         internal static System.Drawing.Bitmap SpeedBonus {
             get {
                 object obj = ResourceManager.GetObject("SpeedBonus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Star {
+            get {
+                object obj = ResourceManager.GetObject("Star", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
