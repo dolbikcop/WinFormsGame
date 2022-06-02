@@ -17,6 +17,8 @@ namespace WinFormsApp1
         {
             game = new Game();
             View = new View(game);
+            
+            //Controller.ControlKeys(Keys.P, true);
 
             DoubleBuffered = true;
             Load += (_, _) => Controller.GoFullscreen(true, this);

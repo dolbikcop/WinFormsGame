@@ -8,6 +8,8 @@ namespace WinFormsApp1
         public static bool IsInputLeft { get; private set; }
         public static bool IsInputDown { get; private set; }
         public static bool IsInputRight { get; private set; }
+        
+        public static bool IsPaused { get; private set; }
         internal static void ControlKeys(Keys key, bool isActive)
         {
             switch (key)
@@ -33,6 +35,10 @@ namespace WinFormsApp1
                     break;
                 case Keys.F:
                     GoFullscreen(false, Form.ActiveForm);
+                    break;
+                case Keys.P:
+                    if (!isActive)
+                        IsPaused = !IsPaused;
                     break;
             }
         }

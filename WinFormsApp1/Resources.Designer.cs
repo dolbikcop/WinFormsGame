@@ -136,6 +136,15 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 200.
+        /// </summary>
+        internal static string EnergyCount {
+            get {
+                return ResourceManager.GetString("EnergyCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap HealthBonus {
@@ -169,6 +178,16 @@ namespace WinFormsApp1 {
         internal static string HeroStartSpeed {
             get {
                 return ResourceManager.GetString("HeroStartSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InputInstrucion {
+            get {
+                object obj = ResourceManager.GetObject("InputInstrucion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

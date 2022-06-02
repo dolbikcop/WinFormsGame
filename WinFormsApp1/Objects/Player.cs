@@ -17,27 +17,45 @@ namespace WinFormsApp1
         {
             Image = Resources.MainHero,
             Size = Resources.MainHero.Size,
-            Tag = "player",
             Location = new Point(0, 0)
         };
         
-        public readonly int Speed;
+        public int Speed { get; private set; }
+        private int startSpeed;
         public int Health { get; private set; }
         public int X => Position.X;
 
         public int Y => Position.Y;
 
-        public int Radius = int.Parse(Resources.StartViewRadius);
+        public int Radius => eManager.Energy * 2;
 
-        private EnergyManager eManager = new EnergyManager();
+        private EnergyManager eManager;
         public int Energy => eManager.Energy;
 
         public PlayerStage Stage;
         public Player(Point start, int speed, int health)
         {
+            eManager = new EnergyManager();
+            eManager.Start();
+            
             Position = start;
             Speed = speed;
+            startSpeed = speed;
             Health = health;
+        }
+
+        public void Die()
+        {
+            eManager.Stop();
+            Stage = PlayerStage.Died;
+            Speed = 0;
+        }
+
+        public void Start()
+        {
+            eManager.Start();
+            Stage = PlayerStage.Normal;
+            Speed = startSpeed;
         }
 
         public void Move(int dx, int dy)

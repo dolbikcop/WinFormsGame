@@ -18,12 +18,9 @@ namespace WinFormsApp1
         {
             //transform camera
             g.TranslateTransform(-game.player.X+700, -game.player.Y+450);
-            if (game.GameStage != GameStage.Pause)
-            {
-                game.Update();
             
-                DrawObjects(g);   
-            }
+            game.Update(); 
+            DrawObjects(g);
             
             ui.UpdateUI(g);
         }

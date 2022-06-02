@@ -36,6 +36,9 @@
     <data name="Interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>..\WinFormsApp1\Sprites\interface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     </data>
+    <data name="InputInstrucion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\input_instuction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
     <data name="__" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>..\WinFormsApp1\Sprites\speed_bonus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     </data>
@@ -71,5 +74,8 @@
     </data>
     <data name="SpawnLocationMax" xml:space="preserve">
         <value>1500</value>
+    </data>
+    <data name="EnergyCount" xml:space="preserve">
+        <value>200</value>
     </data>
 </root>

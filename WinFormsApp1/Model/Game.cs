@@ -38,6 +38,23 @@ namespace WinFormsApp1
 
         public void Update()
         {
+            if (GameStage == GameStage.Pause && !Controller.IsPaused)
+            {
+                player.Start();
+                GameStage = GameStage.Play;
+            }
+
+            if (GameStage == GameStage.Play && (player.Health <= 0 || player.Energy <= 0))
+            {
+                GameStage = GameStage.Lose;
+                player.Die();
+            }
+
+            if (Controller.IsPaused && GameStage == GameStage.Play)
+            {
+                GameStage = GameStage.Pause;
+                Pause();
+            }
             if (GameStage == GameStage.Play)
             {
                 
@@ -47,12 +64,13 @@ namespace WinFormsApp1
             
                 player.Move();
                 
-                if (player.Health <= 0)
-                {
-                    player.Stage = PlayerStage.Died;
-                    GameStage = GameStage.Lose;
-                }
+                if (player.Health <= 0 || player.Energy<=0) player.Die();
             }
+        }
+
+        public void Pause()
+        {
+            player.Die();
         }
     }
 }

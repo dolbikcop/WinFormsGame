@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -38,10 +39,10 @@ namespace WinFormsApp1
         public void MoveToPosition(Point p, int speed)
         {
             var tPos = Position;
-            if (Position.X > p.X) tPos = Move(-speed, 0);
-            else if (Position.X < p.X) tPos = Move(speed, 0);
-            if (Position.Y < p.Y) tPos = Move(0, speed);
-            else if (Position.Y > p.Y) tPos = Move(0, -speed);
+            if (Position.X > p.X) tPos.X = Move(-speed, 0).X;
+            else if (Position.X < p.X) tPos.X = Move(speed, 0).X;
+            if (Position.Y < p.Y) tPos.Y = Move(0, speed).Y;
+            else if (Position.Y > p.Y) tPos.Y = Move(0, -speed).Y;
 
             var tRect = new Rectangle(tPos, View.Size);
             if (Objects.All(x => !x.Bounds.IntersectsWith(tRect) || x.Position == Position))

@@ -23,6 +23,7 @@ namespace WinFormsApp1
         public Bush(Rectangle r)
         {
             View.Bounds = r;
+            View.Size = new Size(100, 100);
         }
         public static void Update(Player player)
         {

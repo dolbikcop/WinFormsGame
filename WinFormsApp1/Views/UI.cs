@@ -12,6 +12,7 @@ namespace WinFormsApp1
 
         public void UpdateUI(Graphics g)
         {
+            //health and energy
             g.DrawImage(Resources.Interface, 
                 Point.Add(game.player.Position, new Size(-600, -300)));
             g.DrawString(game.player.Health.ToString(), 
@@ -22,6 +23,13 @@ namespace WinFormsApp1
                 new Font(FontFamily.GenericMonospace, 24, FontStyle.Bold), 
                 Brushes.LightBlue,
                 Point.Add(game.player.Position, new Size(-550, -265)));
+            
+            //input
+            g.DrawImage(Resources.InputInstrucion, 
+                Point.Add(game.player.Position, new Size(600, 300)));
+            if (game.GameStage == GameStage.Lose)
+                g.DrawImage(Resources.InputInstrucion, 
+                    Point.Add(game.player.Position, new Size(0, 0)));
         }
     }
 }
