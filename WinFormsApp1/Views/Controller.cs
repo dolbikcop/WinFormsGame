@@ -11,6 +11,7 @@ namespace WinFormsApp1
 
         public static bool IsPaused = true;
         public static bool IsInstruction = true;
+        public static bool IsHeal { get; private set; }
         internal static void ControlKeys(Keys key, bool isActive)
         {
             switch (key)
@@ -48,6 +49,9 @@ namespace WinFormsApp1
                         IsPaused = true;
                         IsInstruction = true;
                     } 
+                    break;
+                case Keys.E:
+                    IsHeal = isActive;
                     break;
             }
         }

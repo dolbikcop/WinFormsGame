@@ -75,11 +75,21 @@ namespace WinFormsApp1
                 Move(-1, 0);
         }
 
-        public void TakeDamage(int damage)
+        public void Update()
         {
-            Health -= damage;
+            Move();
+            if (Controller.IsHeal && Health >= 200) 
+                Stage = PlayerStage.Heal;
+            switch (Stage)
+            {
+                case PlayerStage.Normal:
+                    break;
+                case PlayerStage.Died:
+                    break;
+                case PlayerStage.Heal:
+                    break;
+            }
         }
-
         public void TakeHealth(int i)
         {
             Health += i;

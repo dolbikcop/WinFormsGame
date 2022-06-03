@@ -58,7 +58,7 @@ namespace WinFormsApp1
                     foreach (var e in Objects)
                     {
                         if (e.View.Bounds.IntersectsWith(player.Bounds))
-                            player.TakeDamage(Enemy.Damage);
+                            player.TakeHealth(-Enemy.Damage);
                         else
                             e.MoveToPosition(player.Position);
                     }
@@ -66,6 +66,19 @@ namespace WinFormsApp1
                 case PlayerStage.Hidden:
                     foreach (var e in Objects)
                         e.MoveToPosition(e.StartPosition);
+                    break;
+                case PlayerStage.Heal:
+                    for (var i =0; i<Objects.Count;i++)
+                    {
+                        var e = Objects[i];
+                        if (e.View.Bounds.IntersectsWith(player.Bounds))
+                        {
+                            player.TakeHealth(-150);
+                            Objects.RemoveAt(i);
+                        }
+                        else
+                            e.MoveToPosition(player.Position, -Speed);
+                    }
                     break;
             }
         }

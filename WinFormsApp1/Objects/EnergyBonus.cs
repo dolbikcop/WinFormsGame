@@ -34,7 +34,7 @@ namespace WinFormsApp1
                 {
                     player.TakeEnergy(Bonus);
                     Objects.RemoveAt(i);
-                    Objects.Add(new EnergyBonus(SpawnManager.Spawn(1, player.Position).First()));
+                    Objects.Add(new EnergyBonus(SpawnManager.Spawn(1, player.Position).Single()));
                 }
             }
         }

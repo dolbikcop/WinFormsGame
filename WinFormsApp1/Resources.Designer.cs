@@ -61,6 +61,26 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AngryHero {
+            get {
+                object obj = ResourceManager.GetObject("AngryHero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AngryMushroom {
+            get {
+                object obj = ResourceManager.GetObject("AngryMushroom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 20.
         /// </summary>
         internal static string BonusCount {
@@ -85,6 +105,26 @@ namespace WinFormsApp1 {
         internal static string BushCount {
             get {
                 return ResourceManager.GetString("BushCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeadHero {
+            get {
+                object obj = ResourceManager.GetObject("DeadHero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeathScreen {
+            get {
+                object obj = ResourceManager.GetObject("DeathScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -213,6 +253,26 @@ namespace WinFormsApp1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap InvisibleHero {
+            get {
+                object obj = ResourceManager.GetObject("InvisibleHero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InvisibleMushroom {
+            get {
+                object obj = ResourceManager.GetObject("InvisibleMushroom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MainHero {
             get {
                 object obj = ResourceManager.GetObject("MainHero", resourceCulture);
@@ -226,6 +286,16 @@ namespace WinFormsApp1 {
         internal static System.Drawing.Bitmap Pause {
             get {
                 object obj = ResourceManager.GetObject("Pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PoisonBerry {
+            get {
+                object obj = ResourceManager.GetObject("PoisonBerry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -301,29 +371,10 @@ namespace WinFormsApp1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SpeedBonus {
-            get {
-                object obj = ResourceManager.GetObject("SpeedBonus", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Star {
             get {
                 object obj = ResourceManager.GetObject("Star", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 500.
-        /// </summary>
-        internal static string StartViewRadius {
-            get {
-                return ResourceManager.GetString("StartViewRadius", resourceCulture);
             }
         }
     }

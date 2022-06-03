@@ -54,8 +54,8 @@ namespace WinFormsApp1
                     HealthBonus.Update(player);
                     Bush.Update(player);
                     EnergyBonus.Update(player);
+                    player.Update();
                     
-                    player.Move();
                     break;
                 case GameStage.Pause:
                     player.Die();
