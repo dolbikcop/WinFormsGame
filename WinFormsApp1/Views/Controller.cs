@@ -46,7 +46,7 @@ namespace WinFormsApp1
                     if (!isActive)
                     {
                         IsPaused = true;
-                        IsInstruction = !IsInstruction;
+                        IsInstruction = true;
                     } 
                     break;
             }
