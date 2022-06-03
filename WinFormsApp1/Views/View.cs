@@ -16,10 +16,11 @@ namespace WinFormsApp1
         }
         public void UpdateGraphics(Graphics g)
         {
+            game.Update(); 
+            
             //transform camera
             g.TranslateTransform(-game.player.X+700, -game.player.Y+450);
             
-            game.Update(); 
             DrawObjects(g);
             
             ui.UpdateUI(g);
@@ -30,7 +31,7 @@ namespace WinFormsApp1
             //BackgroundColor
             g.Clear(Color.Black);
             
-            g.FillEllipse(Brushes.SeaGreen, game.ViewZone);
+            g.FillEllipse(Brushes.CadetBlue, game.ViewZone);
 
             var star = Resources.Star;
             g.DrawImage(star, game.player.Position+new Size(10, -25));

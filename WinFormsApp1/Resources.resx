@@ -84,4 +84,22 @@
     <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>..\WinFormsApp1\Sprites\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     </data>
+    <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
+    <data name="Rule0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\rules0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
+    <data name="Rule1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\rules1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
+    <data name="Rule2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\rules2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
+    <data name="Rule3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\rules3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
+    <data name="Rule4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>..\WinFormsApp1\Sprites\rules4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    </data>
 </root>

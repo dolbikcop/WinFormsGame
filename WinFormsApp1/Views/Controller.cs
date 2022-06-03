@@ -2,14 +2,15 @@
 
 namespace WinFormsApp1
 {
-    internal class Controller
+    internal static class Controller
     {
         public static bool IsInputUp { get; private set; }
         public static bool IsInputLeft { get; private set; }
         public static bool IsInputDown { get; private set; }
         public static bool IsInputRight { get; private set; }
-        
-        public static bool IsPaused { get; private set; }
+
+        public static bool IsPaused = true;
+        public static bool IsInstruction = true;
         internal static void ControlKeys(Keys key, bool isActive)
         {
             switch (key)
@@ -39,6 +40,14 @@ namespace WinFormsApp1
                 case Keys.P:
                     if (!isActive)
                         IsPaused = !IsPaused;
+                    if (!IsPaused) IsInstruction = false;
+                    break;
+                case Keys.I:
+                    if (!isActive)
+                    {
+                        IsPaused = true;
+                        IsInstruction = !IsInstruction;
+                    } 
                     break;
             }
         }

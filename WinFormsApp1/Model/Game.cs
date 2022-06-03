@@ -15,6 +15,8 @@ namespace WinFormsApp1
             int.Parse(Resources.HeroStartHealth));
         
         public GameStage GameStage;
+
+        public Point Center => Point.Add(player.Position, new Size(50, 50));
         
         public Rectangle ViewZone =>
             new (new Point(player.Position.X - player.Radius, player.Position.Y - player.Radius),
