@@ -27,8 +27,7 @@ namespace WinFormsApp1
         {
             var result = new Point(p.X, p.Y);
 
-            while ((result.X > p.X - spawnMin && result.X < p.X + spawnMin) 
-                   || (result.Y > p.Y - spawnMin && result.Y < p.Y + spawnMin))
+            while (!(isValidLocation(result, p)))
             {
                 var randomLocationX = r.Next(p.X - spawnMax, spawnMax + p.X);
 
@@ -38,6 +37,13 @@ namespace WinFormsApp1
             }
 
             return result;
+        }
+
+        private static bool isValidLocation(Point p,Point pl)
+        {
+            return ((p.X < pl.X && p.X < pl.X - spawnMin) || (p.X > pl.X && p.X > pl.X + spawnMin))
+                   && ((p.Y < pl.Y && p.Y < pl.Y - spawnMin) || (p.Y > pl.Y && p.Y > pl.Y + spawnMin))
+                   && p.X<1500 && p.X > -1500 && p.Y<1500 && p.Y > -1500;
         }
     }
 }

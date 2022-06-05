@@ -9,6 +9,7 @@ namespace WinFormsApp1
     public class Enemy
     {
         public static List<Enemy> Objects;
+        public static List<HealthyEnemy> hObjects = new();
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
         public Image Image => View.Image;
@@ -74,6 +75,7 @@ namespace WinFormsApp1
                         if (e.View.Bounds.IntersectsWith(player.Bounds))
                         {
                             player.TakeHealth(-150);
+                            hObjects.Add(new HealthyEnemy(e.Position));
                             Objects.RemoveAt(i);
                         }
                         else

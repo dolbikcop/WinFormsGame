@@ -92,6 +92,66 @@ namespace WinFormsApp1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Buba0 {
+            get {
+                object obj = ResourceManager.GetObject("Buba0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Buba1 {
+            get {
+                object obj = ResourceManager.GetObject("Buba1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Buba2 {
+            get {
+                object obj = ResourceManager.GetObject("Buba2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Buba3 {
+            get {
+                object obj = ResourceManager.GetObject("Buba3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Buba4 {
+            get {
+                object obj = ResourceManager.GetObject("Buba4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Buba5 {
+            get {
+                object obj = ResourceManager.GetObject("Buba5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bush {
             get {
                 object obj = ResourceManager.GetObject("Bush", resourceCulture);
@@ -139,7 +199,7 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 20.
+        ///   Looks up a localized string similar to 10.
         /// </summary>
         internal static string EnemyCount {
             get {
@@ -209,6 +269,16 @@ namespace WinFormsApp1 {
         internal static string HealthBonusValue {
             get {
                 return ResourceManager.GetString("HealthBonusValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Heart {
+            get {
+                object obj = ResourceManager.GetObject("Heart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -351,7 +421,27 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1500.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rule5 {
+            get {
+                object obj = ResourceManager.GetObject("Rule5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SmillingHero {
+            get {
+                object obj = ResourceManager.GetObject("SmillingHero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1000.
         /// </summary>
         internal static string SpawnLocationMax {
             get {
@@ -360,7 +450,7 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 500.
+        ///   Looks up a localized string similar to 400.
         /// </summary>
         internal static string SpawnLocationMin {
             get {
@@ -374,6 +464,16 @@ namespace WinFormsApp1 {
         internal static System.Drawing.Bitmap Star {
             get {
                 object obj = ResourceManager.GetObject("Star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WinScreen {
+            get {
+                object obj = ResourceManager.GetObject("WinScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -50,7 +50,7 @@ namespace WinFormsApp1
                         IsInstruction = true;
                     } 
                     break;
-                case Keys.E:
+                case Keys.H:
                     IsHeal = isActive;
                     break;
             }

@@ -33,6 +33,7 @@ namespace WinFormsApp1
         public int Energy => eManager.Energy;
 
         public PlayerStage Stage;
+        public Bitmap Star = Resources.Star;
         public Player(Point start, int speed, int health)
         {
             eManager = new EnergyManager();
@@ -44,11 +45,17 @@ namespace WinFormsApp1
             Health = health;
         }
 
-        public void Die()
+        public void Pause()
         {
             eManager.Stop();
-            Stage = PlayerStage.Died;
+            Stage = PlayerStage.Paused;
             Speed = 0;
+        }
+
+        public void Die()
+        {
+            Pause();
+            Stage = PlayerStage.Died;
         }
 
         public void Start()
@@ -61,7 +68,11 @@ namespace WinFormsApp1
         public void Move(int dx, int dy)
         {
             var delta = new Size(dx * Speed, dy * Speed);
-            Position = Point.Add(Position, delta);
+            var pos = Point.Add(Position, delta);
+            if (pos.X > -1500 && pos.X < 1500 && 
+                pos.Y > -1500 && pos.Y < 1500)
+                Position = pos;
+
         }
         public void Move()
         {
@@ -83,10 +94,16 @@ namespace WinFormsApp1
             switch (Stage)
             {
                 case PlayerStage.Normal:
+                    View.Image = Resources.MainHero;
+                    Star = Resources.Star;
                     break;
                 case PlayerStage.Died:
+                    View.Image = Resources.DeadHero;
                     break;
                 case PlayerStage.Heal:
+                    View.Image = Resources.SmillingHero;
+                    View.Size = Resources.SmillingHero.Size;
+                    Star = Resources.Heart;
                     break;
             }
         }

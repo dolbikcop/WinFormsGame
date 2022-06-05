@@ -5,6 +5,7 @@
         Normal, 
         Hidden, 
         Died, 
-        Heal
+        Heal, 
+        Paused
     }
 }

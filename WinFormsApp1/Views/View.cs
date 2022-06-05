@@ -33,8 +33,7 @@ namespace WinFormsApp1
             
             g.FillEllipse(Brushes.CadetBlue, game.ViewZone);
 
-            var star = Resources.Star;
-            g.DrawImage(star, game.player.Position+new Size(10, -25));
+            g.DrawImage(game.player.Star, game.player.Position+new Size(15, -25));
             g.DrawImage(game.player.Image, game.player.Position);
             
             foreach (var enemy in Enemy.Objects)
@@ -52,6 +51,10 @@ namespace WinFormsApp1
             foreach (var item in Bush.Objects)
                 if (item.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(item.Image, item.Bounds);
+            
+            foreach (var h in Enemy.hObjects)
+                if (h.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(h.Image, h.Bounds);
         }
     }
 }

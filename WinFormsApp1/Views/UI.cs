@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Timers;
 using Timer = System.Timers.Timer;
 
 namespace WinFormsApp1
@@ -16,7 +15,7 @@ namespace WinFormsApp1
             game = g;
             
             iTimer.Elapsed += (_, _) => animate++;
-            iTimer.Interval = 1000;
+            iTimer.Interval = 400;
             iTimer.Start();
         }
 
@@ -30,11 +29,18 @@ namespace WinFormsApp1
             
             //input
             DrawElement(g, Resources.InputInstrucion, 600, 300);
-            
-            if (game.GameStage == GameStage.Lose)
-                DrawElement(g, Resources.DeathScreen, -800, -450);
-            if (game.GameStage == GameStage.Pause)
-                DrawElement(g, Resources.Pause, -30, -40);
+            switch (game.GameStage)
+            {
+                case GameStage.Lose:
+                    DrawElement(g, Resources.DeathScreen, -800, -450);
+                    break;
+                case GameStage.Win:
+                    DrawElement(g, Resources.WinScreen, -800, -450);
+                    break;
+                case GameStage.Pause:
+                    DrawElement(g, Resources.Pause, -30, -40);
+                    break;
+            }
             
             if (isShowInstruction)
             {
@@ -49,7 +55,7 @@ namespace WinFormsApp1
         private List<Bitmap> instraction = new()
         {
             Resources.Rule0, Resources.Rule1, 
-            Resources.Rule2, Resources.Rule3, Resources.Rule4
+            Resources.Rule2, Resources.Rule3, Resources.Rule4, Resources.Rule5
         };
         private int animate;
 

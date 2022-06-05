@@ -36,8 +36,8 @@ namespace WinFormsApp1
             EnergyBonus.Objects = SpawnManager.Spawn(int.Parse(Resources.BonusCount), Point.Empty)
                 .Select(x => new EnergyBonus(x))
                 .ToList();
-            player.Stage = PlayerStage.Normal;
-            GameStage = GameStage.Play;
+            player.Stage = PlayerStage.Paused;
+            GameStage = GameStage.Pause;
         }
 
         public void Update()
@@ -49,7 +49,8 @@ namespace WinFormsApp1
                         GameStage = GameStage.Lose;
                     else if (Controller.IsPaused)
                         GameStage = GameStage.Pause;
-                    
+                    if (Enemy.Objects.Count == 0)
+                        GameStage = GameStage.Win;
                     Enemy.Update(player);
                     HealthBonus.Update(player);
                     Bush.Update(player);
@@ -58,7 +59,7 @@ namespace WinFormsApp1
                     
                     break;
                 case GameStage.Pause:
-                    player.Die();
+                    player.Pause();
                     if (!Controller.IsPaused)
                     {
                         player.Start();
@@ -67,6 +68,9 @@ namespace WinFormsApp1
                     break;
                 case GameStage.Lose:
                     player.Die();
+                    break;
+                case GameStage.Win:
+                    player.Pause();
                     break;
             }
         }
