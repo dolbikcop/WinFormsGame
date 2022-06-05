@@ -54,6 +54,7 @@ namespace WinFormsApp1
 
         public void Die()
         {
+            Health = 0;
             Pause();
             Stage = PlayerStage.Died;
         }
@@ -91,6 +92,14 @@ namespace WinFormsApp1
             Move();
             if (Controller.IsHeal && Health >= 200) 
                 Stage = PlayerStage.Heal;
+            if (BonusManager.BonusTime.Enabled)
+                Stage = PlayerStage.Angry;
+            else if (Stage == PlayerStage.Angry)
+            {
+                Stage = PlayerStage.Normal;
+                Health /=2;
+            }
+            
             switch (Stage)
             {
                 case PlayerStage.Normal:
@@ -104,6 +113,11 @@ namespace WinFormsApp1
                     View.Image = Resources.SmillingHero;
                     View.Size = Resources.SmillingHero.Size;
                     Star = Resources.Heart;
+                    break;
+                case PlayerStage.Angry:
+                    View.Image = Resources.AngryHero;
+                    View.Size = Resources.AngryHero.Size;
+                    eManager.Stop();
                     break;
             }
         }

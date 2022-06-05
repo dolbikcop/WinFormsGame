@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public class HealthBonus
+    public class TimeBonus
     {
-        public static List<HealthBonus> Objects;
+        public static List<TimeBonus> Objects;
         public Rectangle Bounds => View.Bounds;
         public Point Position => View.Location;
-        public bool IsPoison = false;
+        public bool IsAngry = false;
         public Image Image => View.Image;
         
         private PictureBox View = new()
@@ -19,34 +19,25 @@ namespace WinFormsApp1
             Size = Resources.HealthBonus.Size
         };
 
-        public readonly int Bonus = int.Parse(Resources.HealthBonusValue);
-
-        public HealthBonus(Rectangle r, bool isPoison)
+        public TimeBonus(Rectangle r, bool isPoison)
         {
             View.Bounds = r;
-            IsPoison = isPoison;
-            if (IsPoison)
-            {
-                Bonus = -300;
-                View.Image = Resources.PoisonBerry;
-            }
+            IsAngry = isPoison;
+            if (IsAngry)
+                View.Image = Resources.AngryMushroom;
             else
-            {
-                Bonus = int.Parse(Resources.HealthBonusValue);
                 View.Image = Resources.HealthBonus;
-            }
         }
         public static void Update(Player player)
         {
-            if (player.Stage == PlayerStage.Normal)
             for (int i = 0; i<Objects.Count; i++)
             {
                 var b = Objects[i];
                 if (b.Bounds.IntersectsWith(player.Bounds))
                 {
-                    player.TakeHealth(b.Bonus);
+                    BonusManager.StartTimer();
                     Objects.RemoveAt(i);
-                    Objects.Add(new HealthBonus(SpawnManager.Spawn(1, player.Position).First(), b.IsPoison));
+                    Objects.Add(new TimeBonus(SpawnManager.Spawn(1, player.Position).First(), b.IsAngry));
                 }
             }
         }

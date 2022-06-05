@@ -75,11 +75,25 @@ namespace WinFormsApp1
                         if (e.View.Bounds.IntersectsWith(player.Bounds))
                         {
                             player.TakeHealth(-150);
-                            hObjects.Add(new HealthyEnemy(e.Position));
+                            hObjects.Add(new HealthyEnemy(e.Position, false));
                             Objects.RemoveAt(i);
                         }
                         else
                             e.MoveToPosition(player.Position, -Speed);
+                    }
+                    break;
+                case PlayerStage.Angry:
+                    for (var i =0; i<Objects.Count;i++)
+                    {
+                        var e = Objects[i];
+                        if (e.View.Bounds.IntersectsWith(player.Bounds))
+                        {
+                            player.TakeHealth(0);
+                            hObjects.Add(new HealthyEnemy(e.Position, true));
+                            Objects.RemoveAt(i);
+                        }
+                        else
+                            e.MoveToPosition(player.Position, -Speed*2);
                     }
                     break;
             }

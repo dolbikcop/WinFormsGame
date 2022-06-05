@@ -31,7 +31,16 @@ namespace WinFormsApp1
             //BackgroundColor
             g.Clear(Color.Black);
             
-            g.FillEllipse(Brushes.CadetBlue, game.ViewZone);
+            g.FillEllipse(Brushes.DarkGreen, game.ViewZone);
+            
+            
+            
+            foreach (var h in Enemy.hObjects)
+                if (h.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(h.Image, h.Bounds);
+            foreach (var h in Plant.Objects)
+                if (h.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(h.Image, h.Bounds);
 
             g.DrawImage(game.player.Star, game.player.Position+new Size(15, -25));
             g.DrawImage(game.player.Image, game.player.Position);
@@ -40,6 +49,10 @@ namespace WinFormsApp1
                 if (enemy.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(enemy.Image, enemy.Bounds);
             
+            foreach (var item in Bush.Objects)
+                if (item.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(item.Image, item.Bounds);
+            
             foreach (var bonus in HealthBonus.Objects)
                 if (bonus.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
@@ -47,14 +60,9 @@ namespace WinFormsApp1
             foreach (var bonus in EnergyBonus.Objects)
                 if (bonus.Bounds.IntersectsWith(game.ViewZone))
                     g.DrawImage(bonus.Image, bonus.Bounds);
-            
-            foreach (var item in Bush.Objects)
-                if (item.Bounds.IntersectsWith(game.ViewZone))
-                    g.DrawImage(item.Image, item.Bounds);
-            
-            foreach (var h in Enemy.hObjects)
-                if (h.Bounds.IntersectsWith(game.ViewZone))
-                    g.DrawImage(h.Image, h.Bounds);
+            foreach (var bonus in TimeBonus.Objects)
+                if (bonus.Bounds.IntersectsWith(game.ViewZone))
+                    g.DrawImage(bonus.Image, bonus.Bounds);
         }
     }
 }

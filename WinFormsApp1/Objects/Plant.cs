@@ -5,32 +5,31 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public class HealthyEnemy
+    public class Plant
     {
+        public static List<Plant> Objects;
+
         private static List<Bitmap> view = new()
         {
-            Resources.Buba0, Resources.Buba1, Resources.Buba2, 
-            Resources.Buba3, Resources.Buba4, Resources.Buba5, 
-            Resources.DeadHero
+            Resources.Plant0, Resources.Plant1, 
+            Resources.Plant2, Resources.Plant3
         };
 
         private static Random r = new Random();
         public PictureBox View = new PictureBox()
         {
-            Image = Resources.Buba0,
+            Image = Resources.Plant0,
             Size = new Size(100, 100)
         };
         public Rectangle Bounds => View.Bounds;
         public Image Image => View.Image;
 
-        public HealthyEnemy(Point p, bool isDead)
+        public Plant(Rectangle p)
         {
-            int i;
-            if (isDead) i = view.Count - 1;
-            else i = r.Next(0, view.Count - 2);
+            var i = r.Next(0, view.Count - 1);
             View.Image = view[i];
-            View.Location = p;
-            View.Size = view[i].Size;  
+            View.Location = p.Location;
+            View.Size = new Size(50, 50);
         }
     }
 }

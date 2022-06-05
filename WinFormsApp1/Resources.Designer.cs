@@ -363,6 +363,55 @@ namespace WinFormsApp1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Plant0 {
+            get {
+                object obj = ResourceManager.GetObject("Plant0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Plant1 {
+            get {
+                object obj = ResourceManager.GetObject("Plant1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Plant2 {
+            get {
+                object obj = ResourceManager.GetObject("Plant2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Plant3 {
+            get {
+                object obj = ResourceManager.GetObject("Plant3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15.
+        /// </summary>
+        internal static string PlantCount {
+            get {
+                return ResourceManager.GetString("PlantCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PoisonBerry {
             get {
                 object obj = ResourceManager.GetObject("PoisonBerry", resourceCulture);
@@ -441,7 +490,7 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1000.
+        ///   Looks up a localized string similar to 1500.
         /// </summary>
         internal static string SpawnLocationMax {
             get {
@@ -450,7 +499,7 @@ namespace WinFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 400.
+        ///   Looks up a localized string similar to 200.
         /// </summary>
         internal static string SpawnLocationMin {
             get {
@@ -465,6 +514,15 @@ namespace WinFormsApp1 {
             get {
                 object obj = ResourceManager.GetObject("Star", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        internal static string TimeBonusValue {
+            get {
+                return ResourceManager.GetString("TimeBonusValue", resourceCulture);
             }
         }
         

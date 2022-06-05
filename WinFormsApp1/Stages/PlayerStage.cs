@@ -6,6 +6,7 @@
         Hidden, 
         Died, 
         Heal, 
-        Paused
+        Paused, 
+        Angry
     }
 }
