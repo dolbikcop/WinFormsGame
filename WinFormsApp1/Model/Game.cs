@@ -7,13 +7,13 @@ namespace WinFormsApp1
 {
     public class Game
     {
-        public readonly Player player = new(new Point(0, 0), 3, 200);
+        public readonly Player player = new Player(new Point(0, 0), 3, 200);
 
-        public List<Enemy> Enemies = new();
+        public List<Enemy> Enemies = new List<Enemy>();
 
-        public List<HealthBonus> HealthBonuses = new();
+        public List<HealthBonus> HealthBonuses = new List<HealthBonus>();
         
-        public List<Rectangle> Items = new();
+        public List<Rectangle> Items = new List<Rectangle>();
 
         public Game()
         {

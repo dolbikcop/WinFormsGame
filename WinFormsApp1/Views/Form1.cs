@@ -20,14 +20,14 @@ namespace WinFormsApp1
             g = new Game();
             view = new View(g);
             
-            Load += (_, _) => Control.GoFullscreen(true, this);
+            Load += (x, y) => Control.GoFullscreen(true, this);
             DoubleBuffered = true;
 
-            Paint += (_, args) => view.UpdateGraphics(args.Graphics);
-            Paint += (_, _) => Invalidate();
+            Paint += (x, args) => view.UpdateGraphics(args.Graphics);
+            Paint += (x, y) => Invalidate();
             
-            KeyDown += (_, args) => Control.ControlKeys(args.KeyCode, true);
-            KeyUp += (_, args) => Control.ControlKeys(args.KeyCode, false);
+            KeyDown += (x, args) => Control.ControlKeys(args.KeyCode, true);
+            KeyUp += (x, args) => Control.ControlKeys(args.KeyCode, false);
         }
         
     }

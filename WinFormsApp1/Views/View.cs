@@ -7,9 +7,9 @@ namespace WinFormsApp1
     {
         private Game _game;
         
-        public PictureBox enemyView = new()
+        public PictureBox enemyView = new PictureBox()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Image = Image.FromFile(@"D:\Projects\WinFormsGame\WinFormsApp1\Resources\враг.png"),
             Tag = "enemy",
             Size = new Size(100, 100)
         };

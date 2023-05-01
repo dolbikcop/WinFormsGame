@@ -13,9 +13,9 @@ namespace WinFormsApp1
         public Rectangle Bounds => View.Bounds;
         public Image Image => View.Image;
         
-        public PictureBox View = new()
+        public PictureBox View = new PictureBox()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\character.png"),
+            Image = Image.FromFile(@"D:\Projects\WinFormsGame\WinFormsApp1\Resources\character.png"),
             Height = 100, Width = 100,
             Tag = "player",
             Location = new Point(0, 0)

@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
+        <TargetFrameworks>net481;net5.0-windows;net6.0-windows</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>

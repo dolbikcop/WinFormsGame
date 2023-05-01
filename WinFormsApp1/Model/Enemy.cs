@@ -11,9 +11,9 @@ namespace WinFormsApp1
         public Point Position => View.Location;
         public Image Image => View.Image;
         
-        private PictureBox View = new()
+        private PictureBox View = new PictureBox()
         {
-            Image = Image.FromFile(@"E:\StudioProject\WinFormsApp1\WinFormsApp1\Resources\враг.png"),
+            Image = Image.FromFile(@"D:\Projects\WinFormsGame\WinFormsApp1\Resources\враг.png"),
             Tag = "enemy",
             Size = new Size(100, 100)
         };
